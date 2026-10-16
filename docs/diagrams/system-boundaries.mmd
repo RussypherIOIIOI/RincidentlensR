@@ -1,0 +1,17 @@
+flowchart TD
+  subgraph runtime["Application runtime"]
+    E["Bundled evidence JSON"] --> L["Server scenario loader"]
+    R["Saved report JSON"] --> L
+    L --> V["Schema, citations, and bundle hash"]
+    V --> P["Server-rendered page"]
+    P --> U["Interactive investigation workspace"]
+    U -->|"Explicit local request"| A["Generation route and policy gate"]
+    A --> G["Bounded generation service"]
+    G --> O["Server-only OpenAI adapter"]
+    O --> X["OpenAI Responses API"]
+    G -->|"Validated artifact"| U
+  end
+  subgraph offline["Evaluation process only"]
+    C["Cases and review annotations"] --> H["TypeScript evaluation harness"]
+    H --> Z["Per-dimension results"]
+  end

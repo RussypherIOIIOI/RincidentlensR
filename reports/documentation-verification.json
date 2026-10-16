@@ -1,0 +1,76 @@
+{
+  "updatedAt": "2026-10-15T18:43:35.315Z",
+  "scope": "Documentation update only; application checks below are not a fresh browser or live-provider run.",
+  "documentationFiles": 21,
+  "checks": [
+    {
+      "name": "Documentation structure and cross-references",
+      "markdownFiles": 17,
+      "localLinks": 104,
+      "sectionLinks": 6,
+      "mirroredDiagrams": 4,
+      "knownNpmScripts": [
+        "dev",
+        "build",
+        "start",
+        "check",
+        "format:check",
+        "test:e2e",
+        "validate:data",
+        "typecheck",
+        "lint",
+        "eval",
+        "eval:live"
+      ],
+      "evidenceExcerptMatches": true,
+      "issues": []
+    },
+    {
+      "name": "Application unchanged from pre-documentation source archive",
+      "comparedFiles": 45,
+      "changedApplicationFiles": []
+    },
+    {
+      "command": "npm run validate:data",
+      "exitCode": 0,
+      "output": "\n> incidentlens@1.0.0 validate:data\n> tsx scripts/validate-data.ts\n\nscenario-001: 9 evidence sources; 4 observations; saved-report integrity valid\nscenario-002: 8 evidence sources; 4 observations; saved-report integrity valid\nscenario-003: 8 evidence sources; 4 observations; saved-report integrity valid\n"
+    },
+    {
+      "command": "npm run format:check",
+      "exitCode": 0,
+      "output": "\n> incidentlens@1.0.0 format:check\n> prettier --check .\n\nChecking formatting...\nAll matched files use Prettier code style!\n"
+    },
+    {
+      "name": "Documented fixture-metadata recipe",
+      "exitCode": 0,
+      "bundleHashMatches": true,
+      "statementSignatures": 12,
+      "source": "docs/fixture-maintenance.md",
+      "mode": "Read-only; no provider calls or file writes"
+    },
+    {
+      "command": "prettier --check docs/architecture.md",
+      "exitCode": 0,
+      "context": "After preserving the original implementation reference links"
+    }
+  ],
+  "readerReview": {
+    "method": "Fresh agent with documentation only; no application source or test execution",
+    "questions": 8,
+    "findingsResolved": [
+      "Aligned handler and generation ownership in sequence diagram",
+      "Added tested read-only metadata recipe",
+      "Finalized verification wording",
+      "Required recomputation after evidence/report edits"
+    ],
+    "finalResult": "No new reader issues found"
+  },
+  "notPerformed": [
+    "Browser or visual verification after JARVIS change",
+    "Live-provider calls or model-quality benchmark",
+    "Remote CI execution",
+    "External deployment",
+    "External link availability checks",
+    "Mermaid render/visual validation"
+  ]
+}

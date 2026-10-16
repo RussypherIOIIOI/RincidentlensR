@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "1",
+  "scenarioId": "scenario-002",
+  "evidenceHash": "42c349a5e058f129d6ee2e3aaa7582b2d42d564dfde7492e80b9aafa604993cc",
+  "promptVersion": "1",
+  "reportVersion": "1",
+  "origin": "ai-authored-example",
+  "generatedAt": null,
+  "model": null,
+  "report": {
+    "summary": [
+      {
+        "id": "summary-1",
+        "text": "Application database connections failed while the database reported almost all configured connection slots in use.",
+        "evidenceIds": [
+          "s002-e02",
+          "s002-e03",
+          "s002-e04"
+        ]
+      }
+    ],
+    "impact": [
+      {
+        "id": "impact-1",
+        "text": "An orders request returned HTTP 503 after a database connection acquisition timeout.",
+        "evidenceIds": [
+          "s002-e03"
+        ]
+      }
+    ],
+    "observations": [
+      {
+        "id": "observation-1",
+        "text": "PostgreSQL rejected a connection because remaining slots were reserved.",
+        "evidenceIds": [
+          "s002-e02"
+        ]
+      },
+      {
+        "id": "observation-2",
+        "text": "A single sample showed 198 connections against a configured maximum of 200.",
+        "evidenceIds": [
+          "s002-e04"
+        ]
+      },
+      {
+        "id": "observation-3",
+        "text": "The primary was running, but the control-plane check did not test application queries.",
+        "evidenceIds": [
+          "s002-e05"
+        ]
+      },
+      {
+        "id": "observation-4",
+        "text": "Session termination was proposed; the note contains no execution record.",
+        "evidenceIds": [
+          "s002-e06"
+        ]
+      }
+    ],
+    "hypotheses": [
+      {
+        "id": "hypothesis-1",
+        "text": "Connection-slot pressure may explain the application connection failures.",
+        "evidenceIds": [
+          "s002-e02",
+          "s002-e03",
+          "s002-e04"
+        ],
+        "uncertainty": "medium",
+        "gaps": [
+          "Session ownership and pool behavior are not included."
+        ],
+        "counterEvidenceIds": []
+      },
+      {
+        "id": "hypothesis-2",
+        "text": "The recent reporting-worker rollout could be worth comparing against session ownership.",
+        "evidenceIds": [
+          "s002-e01",
+          "s002-e04"
+        ],
+        "uncertainty": "medium",
+        "gaps": [
+          "The bundle contains no evidence that the reporting worker consumed the connection slots."
+        ],
+        "counterEvidenceIds": []
+      }
+    ],
+    "missingInformation": [
+      {
+        "id": "gap-1",
+        "text": "Recovery and the outcome of any intervention are unknown.",
+        "whyItMatters": "A proposed intervention is not proof of execution or restoration.",
+        "nextCheck": "Collect action audit records and later application query checks.",
+        "evidenceIds": [
+          "s002-e06"
+        ]
+      },
+      {
+        "id": "gap-2",
+        "text": "The client sessions responsible for connection pressure are unknown.",
+        "whyItMatters": "The connection sample does not attribute sessions to applications.",
+        "nextCheck": "Inspect session ownership, age and pool settings.",
+        "evidenceIds": [
+          "s002-e04"
+        ]
+      },
+      {
+        "id": "gap-3",
+        "text": "Affected-user count and total incident duration are unknown.",
+        "whyItMatters": "A single failing request cannot quantify the full impact.",
+        "nextCheck": "Collect request trends and user-impact data beyond this bundle.",
+        "evidenceIds": [
+          "s002-e03"
+        ]
+      }
+    ],
+    "nextChecks": [
+      {
+        "id": "check-1",
+        "text": "Inspect session ownership and application pool settings.",
+        "rationale": "The connection sample is near the configured maximum and lacks client attribution.",
+        "evidenceIds": [
+          "s002-e04",
+          "s002-r01"
+        ]
+      },
+      {
+        "id": "check-2",
+        "text": "Compare reporting-worker activity without assuming it caused the outage.",
+        "rationale": "A rollout is recorded, but its connection-pool settings are absent.",
+        "evidenceIds": [
+          "s002-e01",
+          "s002-r01"
+        ]
+      },
+      {
+        "id": "check-3",
+        "text": "Recheck application queries before concluding recovery.",
+        "rationale": "The running control-plane state does not verify application query availability.",
+        "evidenceIds": [
+          "s002-e05",
+          "s002-r01"
+        ]
+      }
+    ]
+  }
+}

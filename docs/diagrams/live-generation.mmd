@@ -1,0 +1,24 @@
+sequenceDiagram
+  participant UI as Workspace
+  participant RT as Request handler
+  participant GS as Generation service
+  participant SDK as OpenAI adapter
+  participant API as Responses API
+  UI->>RT: scenarioId only
+  RT->>RT: Enforce local mode and validate body
+  alt Live disabled or request invalid
+    RT-->>UI: Typed error; preserve valid report
+  else Allowed and configured
+    RT->>GS: Fixed validated bundle and server model
+    loop At most 2 attempts within 20 seconds
+      GS->>SDK: Evidence, remaining deadline, output budget
+      SDK->>API: Structured output; no tools; SDK retries off
+      API-->>SDK: Completed, refused, incomplete, or error
+      SDK-->>GS: Parsed result or classified error
+      GS->>GS: Validate report shape and source references
+      Note over GS: Stop on success or terminal failure; only structural/citation failures allow correction
+    end
+    GS-->>RT: Valid artifact or safe failure
+    RT-->>UI: Artifact or typed error
+    UI->>UI: Apply only if request version is current
+  end

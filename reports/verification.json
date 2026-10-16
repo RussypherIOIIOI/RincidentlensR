@@ -1,0 +1,67 @@
+{
+  "verifiedAt": "2026-10-15T17:49:53.826Z",
+  "runtime": {
+    "node": "25.9.0",
+    "npm": "11.12.1",
+    "os": "Windows"
+  },
+  "checks": [
+    {
+      "command": "npm ci",
+      "context": "isolated clean source copy",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run typecheck",
+      "context": "isolated clean source copy",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run check",
+      "exitCode": 0,
+      "unitAndComponentTests": 60,
+      "evaluationCases": 14,
+      "includes": [
+        "strict typecheck",
+        "ESLint",
+        "Vitest",
+        "offline evaluation",
+        "production build"
+      ]
+    },
+    {
+      "command": "npm run test:e2e",
+      "exitCode": 0,
+      "browser": "Chromium",
+      "tests": 4,
+      "includes": [
+        "all scenarios and references",
+        "production endpoint refusal",
+        "desktop accessibility",
+        "mobile layout and accessibility"
+      ]
+    },
+    {
+      "command": "npm run format:check",
+      "exitCode": 0
+    },
+    {
+      "command": "npm audit --json",
+      "exitCode": 0,
+      "reportedVulnerabilities": 0
+    },
+    {
+      "command": "npm run eval:live (without --allow-paid)",
+      "exitCode": 1,
+      "expectedOutcome": "guard rejected; no provider calls"
+    }
+  ],
+  "clientBoundary": {
+    "assetsInspected": 10,
+    "forbiddenAssetMatches": []
+  },
+  "liveProviderSmokeTest": "Not run; no paid API calls authorized or made.",
+  "semanticEvaluation": "AI-reviewed exact-fixture corpus; not a general entailment or live-model accuracy score.",
+  "ciExecution": "Workflow supplied; not run remotely.",
+  "publication": "No remote repository or deployment created."
+}

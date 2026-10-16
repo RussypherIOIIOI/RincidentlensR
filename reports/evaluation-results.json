@@ -1,0 +1,482 @@
+{
+  "generatedAt": "2026-10-15T18:13:36.401Z",
+  "scope": "Offline closed-fixture regression. No live-model accuracy or general entailment score.",
+  "review": "AI-reviewed fixture annotations; human semantic review remains recommended.",
+  "caseCount": 14,
+  "matchingExpectations": 14,
+  "results": [
+    {
+      "id": "saved-scenario-001",
+      "matchedExpectation": true,
+      "expected": {
+        "citationValidity": "pass",
+        "requiredEvidence": "pass",
+        "uncertainty": "pass",
+        "citationSupport": "pass"
+      },
+      "observed": {
+        "citationValidity": {
+          "status": "pass",
+          "issues": []
+        },
+        "requiredEvidence": {
+          "status": "pass",
+          "covered": 6,
+          "total": 6,
+          "referencePresenceOnly": true,
+          "issues": []
+        },
+        "uncertainty": {
+          "status": "pass",
+          "issues": []
+        },
+        "citationSupport": {
+          "status": "pass",
+          "issues": []
+        }
+      },
+      "note": "Bundled example: fixture checks only, not a live-model quality score."
+    },
+    {
+      "id": "saved-scenario-002",
+      "matchedExpectation": true,
+      "expected": {
+        "citationValidity": "pass",
+        "requiredEvidence": "pass",
+        "uncertainty": "pass",
+        "citationSupport": "pass"
+      },
+      "observed": {
+        "citationValidity": {
+          "status": "pass",
+          "issues": []
+        },
+        "requiredEvidence": {
+          "status": "pass",
+          "covered": 5,
+          "total": 5,
+          "referencePresenceOnly": true,
+          "issues": []
+        },
+        "uncertainty": {
+          "status": "pass",
+          "issues": []
+        },
+        "citationSupport": {
+          "status": "pass",
+          "issues": []
+        }
+      },
+      "note": "Bundled example: fixture checks only, not a live-model quality score."
+    },
+    {
+      "id": "saved-scenario-003",
+      "matchedExpectation": true,
+      "expected": {
+        "citationValidity": "pass",
+        "requiredEvidence": "pass",
+        "uncertainty": "pass",
+        "citationSupport": "pass"
+      },
+      "observed": {
+        "citationValidity": {
+          "status": "pass",
+          "issues": []
+        },
+        "requiredEvidence": {
+          "status": "pass",
+          "covered": 5,
+          "total": 5,
+          "referencePresenceOnly": true,
+          "issues": []
+        },
+        "uncertainty": {
+          "status": "pass",
+          "issues": []
+        },
+        "citationSupport": {
+          "status": "pass",
+          "issues": []
+        }
+      },
+      "note": "Bundled example: fixture checks only, not a live-model quality score."
+    },
+    {
+      "id": "dangling-citation",
+      "matchedExpectation": true,
+      "expected": {
+        "citationValidity": "fail"
+      },
+      "observed": {
+        "citationValidity": {
+          "status": "fail",
+          "issues": [
+            "Schema or citation integrity failed."
+          ]
+        },
+        "requiredEvidence": {
+          "status": "review-required",
+          "issues": [
+            "Report contract failed; this dimension was not assessed."
+          ],
+          "covered": 0,
+          "total": 6,
+          "referencePresenceOnly": true
+        },
+        "uncertainty": {
+          "status": "review-required",
+          "issues": [
+            "Report contract failed; this dimension was not assessed."
+          ]
+        },
+        "citationSupport": {
+          "status": "review-required",
+          "issues": [
+            "Report contract failed; this dimension was not assessed."
+          ]
+        }
+      },
+      "note": "A source from another scenario must be rejected."
+    },
+    {
+      "id": "uncited-fact",
+      "matchedExpectation": true,
+      "expected": {
+        "citationValidity": "fail"
+      },
+      "observed": {
+        "citationValidity": {
+          "status": "fail",
+          "issues": [
+            "Schema or citation integrity failed."
+          ]
+        },
+        "requiredEvidence": {
+          "status": "review-required",
+          "issues": [
+            "Report contract failed; this dimension was not assessed."
+          ],
+          "covered": 0,
+          "total": 6,
+          "referencePresenceOnly": true
+        },
+        "uncertainty": {
+          "status": "review-required",
+          "issues": [
+            "Report contract failed; this dimension was not assessed."
+          ]
+        },
+        "citationSupport": {
+          "status": "review-required",
+          "issues": [
+            "Report contract failed; this dimension was not assessed."
+          ]
+        }
+      },
+      "note": "Factual impact may not bypass citation requirements."
+    },
+    {
+      "id": "irrelevant-citation",
+      "matchedExpectation": true,
+      "expected": {
+        "citationValidity": "pass",
+        "citationSupport": "fail"
+      },
+      "observed": {
+        "citationValidity": {
+          "status": "pass",
+          "issues": []
+        },
+        "requiredEvidence": {
+          "status": "pass",
+          "covered": 6,
+          "total": 6,
+          "referencePresenceOnly": true,
+          "issues": []
+        },
+        "uncertainty": {
+          "status": "pass",
+          "issues": []
+        },
+        "citationSupport": {
+          "status": "fail",
+          "issues": [
+            "Known claim has a source set outside its reviewed support: summary-1"
+          ]
+        }
+      },
+      "note": "A valid source ID does not prove relevance to a claim."
+    },
+    {
+      "id": "required-evidence-omitted",
+      "matchedExpectation": true,
+      "expected": {
+        "citationValidity": "pass",
+        "requiredEvidence": "fail"
+      },
+      "observed": {
+        "citationValidity": {
+          "status": "pass",
+          "issues": []
+        },
+        "requiredEvidence": {
+          "status": "fail",
+          "covered": 5,
+          "total": 6,
+          "referencePresenceOnly": true,
+          "issues": [
+            "configuration change"
+          ]
+        },
+        "uncertainty": {
+          "status": "pass",
+          "issues": []
+        },
+        "citationSupport": {
+          "status": "fail",
+          "issues": [
+            "Known claim has a source set outside its reviewed support: summary-1",
+            "Known claim has a source set outside its reviewed support: observation-2",
+            "Known claim has a source set outside its reviewed support: hypothesis-1",
+            "Known claim has a source set outside its reviewed support: check-1"
+          ]
+        }
+      },
+      "note": "The configuration-change signal must not disappear from cited findings."
+    },
+    {
+      "id": "missing-uncertainty",
+      "matchedExpectation": true,
+      "expected": {
+        "citationValidity": "pass",
+        "uncertainty": "fail"
+      },
+      "observed": {
+        "citationValidity": {
+          "status": "pass",
+          "issues": []
+        },
+        "requiredEvidence": {
+          "status": "pass",
+          "covered": 6,
+          "total": 6,
+          "referencePresenceOnly": true,
+          "issues": []
+        },
+        "uncertainty": {
+          "status": "fail",
+          "issues": [
+            "Missing reviewed uncertainty: Recovery status and rollback completion are unknown."
+          ]
+        },
+        "citationSupport": {
+          "status": "pass",
+          "issues": []
+        }
+      },
+      "note": "The missing recovery/rollback outcome must be acknowledged."
+    },
+    {
+      "id": "exaggerated-impact",
+      "matchedExpectation": true,
+      "expected": {
+        "citationValidity": "pass",
+        "citationSupport": "fail",
+        "uncertainty": "fail"
+      },
+      "observed": {
+        "citationValidity": {
+          "status": "pass",
+          "issues": []
+        },
+        "requiredEvidence": {
+          "status": "pass",
+          "covered": 6,
+          "total": 6,
+          "referencePresenceOnly": true,
+          "issues": []
+        },
+        "uncertainty": {
+          "status": "fail",
+          "issues": [
+            "The sample counts requests, not unique users, and covers only one minute."
+          ]
+        },
+        "citationSupport": {
+          "status": "fail",
+          "issues": [
+            "The sample counts requests, not unique users, and covers only one minute."
+          ]
+        }
+      },
+      "note": "The sample counts requests, not unique users, and covers only one minute."
+    },
+    {
+      "id": "runbook-as-action",
+      "matchedExpectation": true,
+      "expected": {
+        "citationValidity": "pass",
+        "citationSupport": "fail"
+      },
+      "observed": {
+        "citationValidity": {
+          "status": "pass",
+          "issues": []
+        },
+        "requiredEvidence": {
+          "status": "pass",
+          "covered": 6,
+          "total": 6,
+          "referencePresenceOnly": true,
+          "issues": []
+        },
+        "uncertainty": {
+          "status": "fail",
+          "issues": [
+            "A runbook is procedure; the release event only says rollback was queued."
+          ]
+        },
+        "citationSupport": {
+          "status": "fail",
+          "issues": [
+            "A runbook is procedure; the release event only says rollback was queued."
+          ]
+        }
+      },
+      "note": "A runbook is procedure; the release event only says rollback was queued."
+    },
+    {
+      "id": "contradictory-health-claim",
+      "matchedExpectation": true,
+      "expected": {
+        "citationValidity": "pass",
+        "citationSupport": "fail"
+      },
+      "observed": {
+        "citationValidity": {
+          "status": "pass",
+          "issues": []
+        },
+        "requiredEvidence": {
+          "status": "pass",
+          "covered": 6,
+          "total": 6,
+          "referencePresenceOnly": true,
+          "issues": []
+        },
+        "uncertainty": {
+          "status": "fail",
+          "issues": [
+            "The cached health check explicitly did not call checkout."
+          ]
+        },
+        "citationSupport": {
+          "status": "fail",
+          "issues": [
+            "The cached health check explicitly did not call checkout."
+          ]
+        }
+      },
+      "note": "The cached health check explicitly did not call checkout."
+    },
+    {
+      "id": "unsupported-credential-expiry",
+      "matchedExpectation": true,
+      "expected": {
+        "citationValidity": "pass",
+        "citationSupport": "fail",
+        "uncertainty": "fail"
+      },
+      "observed": {
+        "citationValidity": {
+          "status": "pass",
+          "issues": []
+        },
+        "requiredEvidence": {
+          "status": "pass",
+          "covered": 5,
+          "total": 5,
+          "referencePresenceOnly": true,
+          "issues": []
+        },
+        "uncertainty": {
+          "status": "fail",
+          "issues": [
+            "HTTP 401 omits a reason and the export has no expiry timestamp."
+          ]
+        },
+        "citationSupport": {
+          "status": "fail",
+          "issues": [
+            "HTTP 401 omits a reason and the export has no expiry timestamp."
+          ]
+        }
+      },
+      "note": "HTTP 401 omits a reason and the export has no expiry timestamp."
+    },
+    {
+      "id": "incomplete-auth-evidence",
+      "matchedExpectation": true,
+      "expected": {
+        "citationValidity": "pass",
+        "requiredEvidence": "pass",
+        "uncertainty": "pass",
+        "citationSupport": "pass"
+      },
+      "observed": {
+        "citationValidity": {
+          "status": "pass",
+          "issues": []
+        },
+        "requiredEvidence": {
+          "status": "pass",
+          "covered": 4,
+          "total": 4,
+          "referencePresenceOnly": true,
+          "issues": []
+        },
+        "uncertainty": {
+          "status": "pass",
+          "issues": []
+        },
+        "citationSupport": {
+          "status": "pass",
+          "issues": []
+        }
+      },
+      "note": "Expiry remains unknown when the already-redacted credential inventory is removed. This is a curated missing-data fixture, not a fresh model response."
+    },
+    {
+      "id": "adversarial-log",
+      "matchedExpectation": true,
+      "expected": {
+        "citationValidity": "pass",
+        "requiredEvidence": "pass",
+        "uncertainty": "pass",
+        "citationSupport": "pass"
+      },
+      "observed": {
+        "citationValidity": {
+          "status": "pass",
+          "issues": []
+        },
+        "requiredEvidence": {
+          "status": "pass",
+          "covered": 6,
+          "total": 6,
+          "referencePresenceOnly": true,
+          "issues": []
+        },
+        "uncertainty": {
+          "status": "pass",
+          "issues": []
+        },
+        "citationSupport": {
+          "status": "pass",
+          "issues": []
+        }
+      },
+      "note": "A known good report remains valid with an injected distractor; prompt-isolation tests separately check the data boundary. This does not prove live-model injection resistance."
+    }
+  ]
+}

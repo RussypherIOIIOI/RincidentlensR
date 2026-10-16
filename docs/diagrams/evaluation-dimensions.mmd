@@ -1,0 +1,12 @@
+flowchart TD
+  I["Candidate report, bundle, and case rubric"] --> V{"Schema and citations valid?"}
+  V -->|"No"| F["Citation validity: fail"]
+  F --> N["Other dimensions: review-required"]
+  V -->|"Yes"| C["Citation validity: pass"]
+  C --> E["Required evidence: source-group coverage"]
+  C --> U["Uncertainty: reviewed unknowns and forbidden claims"]
+  C --> S["Support: exact reviewed statement signatures"]
+  E --> R["Separate pass, fail, or review-required results"]
+  U --> R
+  S --> R
+  R --> M["Compare against explicit fixture expectations"]

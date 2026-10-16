@@ -1,0 +1,87 @@
+{
+  "id": "scenario-001",
+  "version": "1",
+  "evidence": [
+    {
+      "id": "s001-e01",
+      "scenarioId": "scenario-001",
+      "kind": "deployment",
+      "source": "release-controller",
+      "timestamp": "2026-02-18T10:00:00.000Z",
+      "text": "Rollout started for checkout-api v2.14.0.",
+      "severity": "info"
+    },
+    {
+      "id": "s001-e02",
+      "scenarioId": "scenario-001",
+      "kind": "deployment",
+      "source": "release-controller",
+      "timestamp": "2026-02-18T10:01:40.000Z",
+      "text": "Rollout completed for checkout-api v2.14.0. Startup probes passed; checkout transaction checks were not part of this rollout.",
+      "severity": "info"
+    },
+    {
+      "id": "s001-e03",
+      "scenarioId": "scenario-001",
+      "kind": "log",
+      "source": "checkout-api",
+      "timestamp": "2026-02-18T10:02:05.000Z",
+      "text": "GET /checkout returned HTTP 503. Outbound connection to payments.internal:8081 failed with ECONNREFUSED. request_id=SYNTHETIC-REQ-01",
+      "severity": "error"
+    },
+    {
+      "id": "s001-e04",
+      "scenarioId": "scenario-001",
+      "kind": "log",
+      "source": "config-observer",
+      "timestamp": "2026-02-18T10:02:06.000Z",
+      "text": "Observed environment diff: PAYMENT_BASE_URL changed from http://payments.internal:8080 to http://payments.internal:8081. No approved configuration baseline is included.",
+      "severity": "warning"
+    },
+    {
+      "id": "s001-e05",
+      "scenarioId": "scenario-001",
+      "kind": "metric",
+      "source": "request-sampler",
+      "timestamp": "2026-02-18T10:03:00.000Z",
+      "text": "For the sampled window 10:02:00Z–10:03:00Z: checkout requests=100, HTTP 503 responses=17. These are sampled requests, not unique users.",
+      "severity": "warning"
+    },
+    {
+      "id": "s001-e06",
+      "scenarioId": "scenario-001",
+      "kind": "log",
+      "source": "edge-cache",
+      "timestamp": "2026-02-18T10:03:00.000Z",
+      "text": "GET /health returned HTTP 200; cache_status=HIT; cached_age_seconds=90. This probe did not call /checkout.",
+      "severity": "info"
+    },
+    {
+      "id": "s001-e07",
+      "scenarioId": "scenario-001",
+      "kind": "deployment",
+      "source": "release-controller",
+      "timestamp": "2026-02-18T10:03:20.000Z",
+      "text": "Rollback request submitted for checkout-api. status=queued. No completion event is present.",
+      "severity": "warning"
+    },
+    {
+      "id": "s001-e08",
+      "scenarioId": "scenario-001",
+      "kind": "log",
+      "source": "collector",
+      "timestamp": null,
+      "text": "A pod restart notice arrived without its original event timestamp; its position relative to rollout is unknown.",
+      "severity": "warning"
+    },
+    {
+      "id": "s001-r01",
+      "scenarioId": "scenario-001",
+      "kind": "runbook",
+      "source": "checkout dependency runbook",
+      "timestamp": null,
+      "text": "Compare the payments endpoint against the approved configuration. Check connectivity from a checkout pod. Collect a fresh uncached checkout probe. Consider rollback only with operator approval; verify completion and post-change health.",
+      "severity": "reference"
+    }
+  ]
+}

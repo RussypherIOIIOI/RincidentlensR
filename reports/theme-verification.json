@@ -1,0 +1,62 @@
+{
+  "projectRoot": "C:/Users/david/.vscode/[personal_projects]/.ppp-incidentlens",
+  "theme": "JARVIS TMC",
+  "colors": {
+    "iris": "#7F00FF",
+    "nvidiaGreen": "#76B900",
+    "void": "#08070D"
+  },
+  "font": "Matrix Sans Regular (local WOFF2)",
+  "contrast": [
+    {
+      "name": "Primary text",
+      "contrast": 16.54,
+      "passes": true
+    },
+    {
+      "name": "Body",
+      "contrast": 11.77,
+      "passes": true
+    },
+    {
+      "name": "Muted",
+      "contrast": 6.76,
+      "passes": true
+    },
+    {
+      "name": "Links",
+      "contrast": 8.36,
+      "passes": true
+    },
+    {
+      "name": "Ready status",
+      "contrast": 6.4,
+      "passes": true
+    },
+    {
+      "name": "Warning",
+      "contrast": 10.26,
+      "passes": true
+    },
+    {
+      "name": "Error",
+      "contrast": 6,
+      "passes": true
+    },
+    {
+      "name": "Gap detail",
+      "contrast": 7.93,
+      "passes": true
+    }
+  ],
+  "browserVerification": "Not rerun: browser security policy blocked automated access in this session. Prior browser results predate this theme.",
+  "checks": {
+    "checkExitCode": 0,
+    "unitAndComponentTests": 60,
+    "evaluationCases": 14,
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "format": "passed"
+  }
+}

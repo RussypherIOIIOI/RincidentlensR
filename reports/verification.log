@@ -1,0 +1,112 @@
+FINAL CHECK
+
+> incidentlens@1.0.0 check
+> npm run typecheck && npm run lint && npm test && npm run eval && npm run build
+
+
+> incidentlens@1.0.0 typecheck
+> next typegen && tsc --noEmit
+
+Generating route types...
+✓ Types generated successfully
+
+> incidentlens@1.0.0 lint
+> eslint .
+
+
+> incidentlens@1.0.0 test
+> vitest run
+
+
+ RUN  v4.1.12 C:/Users/david/.vscode/[personal_projects]/.ppp-incidentlens/incidentlens
+
+ ✓ tests/contracts.test.ts (19 tests) 23ms
+ ✓ tests/evaluation.test.ts (6 tests) 28ms
+ ✓ tests/generation.test.ts (21 tests) 62ms
+ ✓ tests/provider.test.ts (5 tests) 31ms
+ ✓ tests/workspace.test.tsx (9 tests) 896ms
+
+ Test Files  5 passed (5)
+      Tests  60 passed (60)
+   Start at  11:48:31
+   Duration  2.07s (transform 344ms, setup 687ms, import 1.05s, tests 1.04s, environment 714ms)
+
+
+> incidentlens@1.0.0 eval
+> tsx scripts/evaluate.ts
+
+┌─────────┬─────────────────────────────────┬─────────────────┬───────────┬───────────────────┬───────────────────┬───────────────────┐
+│ (index) │ case                            │ expectedOutcome │ citations │ evidence          │ uncertainty       │ support           │
+├─────────┼─────────────────────────────────┼─────────────────┼───────────┼───────────────────┼───────────────────┼───────────────────┤
+│ 0       │ 'saved-scenario-001'            │ 'matched'       │ 'pass'    │ 'pass'            │ 'pass'            │ 'pass'            │
+│ 1       │ 'saved-scenario-002'            │ 'matched'       │ 'pass'    │ 'pass'            │ 'pass'            │ 'pass'            │
+│ 2       │ 'saved-scenario-003'            │ 'matched'       │ 'pass'    │ 'pass'            │ 'pass'            │ 'pass'            │
+│ 3       │ 'dangling-citation'             │ 'matched'       │ 'fail'    │ 'review-required' │ 'review-required' │ 'review-required' │
+│ 4       │ 'uncited-fact'                  │ 'matched'       │ 'fail'    │ 'review-required' │ 'review-required' │ 'review-required' │
+│ 5       │ 'irrelevant-citation'           │ 'matched'       │ 'pass'    │ 'pass'            │ 'pass'            │ 'fail'            │
+│ 6       │ 'required-evidence-omitted'     │ 'matched'       │ 'pass'    │ 'fail'            │ 'pass'            │ 'fail'            │
+│ 7       │ 'missing-uncertainty'           │ 'matched'       │ 'pass'    │ 'pass'            │ 'fail'            │ 'pass'            │
+│ 8       │ 'exaggerated-impact'            │ 'matched'       │ 'pass'    │ 'pass'            │ 'fail'            │ 'fail'            │
+│ 9       │ 'runbook-as-action'             │ 'matched'       │ 'pass'    │ 'pass'            │ 'fail'            │ 'fail'            │
+│ 10      │ 'contradictory-health-claim'    │ 'matched'       │ 'pass'    │ 'pass'            │ 'fail'            │ 'fail'            │
+│ 11      │ 'unsupported-credential-expiry' │ 'matched'       │ 'pass'    │ 'pass'            │ 'fail'            │ 'fail'            │
+│ 12      │ 'incomplete-auth-evidence'      │ 'matched'       │ 'pass'    │ 'pass'            │ 'pass'            │ 'pass'            │
+│ 13      │ 'adversarial-log'               │ 'matched'       │ 'pass'    │ 'pass'            │ 'pass'            │ 'pass'            │
+└─────────┴─────────────────────────────────┴─────────────────┴───────────┴───────────────────┴───────────────────┴───────────────────┘
+14/14 fixture cases matched their expected outcomes. This is not a live-model quality score.
+
+> incidentlens@1.0.0 build
+> npm run validate:data && next build
+
+
+> incidentlens@1.0.0 validate:data
+> tsx scripts/validate-data.ts
+
+scenario-001: 9 evidence sources; 4 observations; saved-report integrity valid
+scenario-002: 8 evidence sources; 4 observations; saved-report integrity valid
+scenario-003: 8 evidence sources; 4 observations; saved-report integrity valid
+▲ Next.js 16.4.1 (Turbopack)
+✓ Running next.config.ts took 23ms
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 376ms
+  Running TypeScript ...
+  Finished TypeScript in 2.1s ...
+  Collecting page data using 6 workers ...
+  Generating static pages using 6 workers (0/4) ...
+  Generating static pages using 6 workers (1/4) 
+  Generating static pages using 6 workers (2/4) 
+  Generating static pages using 6 workers (3/4) 
+✓ Generating static pages using 6 workers (4/4) in 560ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/generate
+└ ○ /icon.svg
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+BROWSER CHECK
+
+> incidentlens@1.0.0 test:e2e
+> playwright test
+
+
+Running 4 tests using 1 worker
+
+  ok 1 [chromium] › e2e\workspace.spec.ts:4:1 › credential-free recruiter journey across all scenarios and source references (828ms)
+  ok 2 [chromium] › e2e\workspace.spec.ts:48:1 › public API refuses paid generation even with forged client options (47ms)
+  ok 3 [chromium] › e2e\workspace.spec.ts:57:1 › desktop workspace has no serious or critical accessibility violations (1.5s)
+  ok 4 [chromium] › e2e\workspace.spec.ts:70:1 › mobile workspace fits the viewport and citations still move focus (708ms)
+
+  4 passed (12.0s)

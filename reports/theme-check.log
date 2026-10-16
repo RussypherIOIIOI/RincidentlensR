@@ -1,0 +1,91 @@
+
+> incidentlens@1.0.0 check
+> npm run typecheck && npm run lint && npm test && npm run eval && npm run build
+
+
+> incidentlens@1.0.0 typecheck
+> next typegen && tsc --noEmit
+
+Generating route types...
+✓ Types generated successfully
+
+> incidentlens@1.0.0 lint
+> eslint .
+
+
+> incidentlens@1.0.0 test
+> vitest run
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.12 [39m[90mC:/Users/david/.vscode/[personal_projects]/.ppp-incidentlens[39m
+
+ [32m✓[39m tests/contracts.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m tests/evaluation.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+ [32m✓[39m tests/generation.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 65[2mms[22m[39m
+ [32m✓[39m tests/provider.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m tests/workspace.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[33m 935[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+[2m      Tests [22m [1m[32m60 passed[39m[22m[90m (60)[39m
+[2m   Start at [22m 12:13:33
+[2m   Duration [22m 2.30s[2m (transform 350ms, setup 798ms, import 1.14s, tests 1.10s, environment 822ms)[22m
+
+
+> incidentlens@1.0.0 eval
+> tsx scripts/evaluate.ts
+
+┌─────────┬─────────────────────────────────┬─────────────────┬───────────┬───────────────────┬───────────────────┬───────────────────┐
+│ (index) │ case                            │ expectedOutcome │ citations │ evidence          │ uncertainty       │ support           │
+├─────────┼─────────────────────────────────┼─────────────────┼───────────┼───────────────────┼───────────────────┼───────────────────┤
+│ 0       │ 'saved-scenario-001'            │ 'matched'       │ 'pass'    │ 'pass'            │ 'pass'            │ 'pass'            │
+│ 1       │ 'saved-scenario-002'            │ 'matched'       │ 'pass'    │ 'pass'            │ 'pass'            │ 'pass'            │
+│ 2       │ 'saved-scenario-003'            │ 'matched'       │ 'pass'    │ 'pass'            │ 'pass'            │ 'pass'            │
+│ 3       │ 'dangling-citation'             │ 'matched'       │ 'fail'    │ 'review-required' │ 'review-required' │ 'review-required' │
+│ 4       │ 'uncited-fact'                  │ 'matched'       │ 'fail'    │ 'review-required' │ 'review-required' │ 'review-required' │
+│ 5       │ 'irrelevant-citation'           │ 'matched'       │ 'pass'    │ 'pass'            │ 'pass'            │ 'fail'            │
+│ 6       │ 'required-evidence-omitted'     │ 'matched'       │ 'pass'    │ 'fail'            │ 'pass'            │ 'fail'            │
+│ 7       │ 'missing-uncertainty'           │ 'matched'       │ 'pass'    │ 'pass'            │ 'fail'            │ 'pass'            │
+│ 8       │ 'exaggerated-impact'            │ 'matched'       │ 'pass'    │ 'pass'            │ 'fail'            │ 'fail'            │
+│ 9       │ 'runbook-as-action'             │ 'matched'       │ 'pass'    │ 'pass'            │ 'fail'            │ 'fail'            │
+│ 10      │ 'contradictory-health-claim'    │ 'matched'       │ 'pass'    │ 'pass'            │ 'fail'            │ 'fail'            │
+│ 11      │ 'unsupported-credential-expiry' │ 'matched'       │ 'pass'    │ 'pass'            │ 'fail'            │ 'fail'            │
+│ 12      │ 'incomplete-auth-evidence'      │ 'matched'       │ 'pass'    │ 'pass'            │ 'pass'            │ 'pass'            │
+│ 13      │ 'adversarial-log'               │ 'matched'       │ 'pass'    │ 'pass'            │ 'pass'            │ 'pass'            │
+└─────────┴─────────────────────────────────┴─────────────────┴───────────┴───────────────────┴───────────────────┴───────────────────┘
+14/14 fixture cases matched their expected outcomes. This is not a live-model quality score.
+
+> incidentlens@1.0.0 build
+> npm run validate:data && next build
+
+
+> incidentlens@1.0.0 validate:data
+> tsx scripts/validate-data.ts
+
+scenario-001: 9 evidence sources; 4 observations; saved-report integrity valid
+scenario-002: 8 evidence sources; 4 observations; saved-report integrity valid
+scenario-003: 8 evidence sources; 4 observations; saved-report integrity valid
+▲ Next.js 16.4.1 (Turbopack)
+✓ Running next.config.ts took 25ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 484ms
+  Running TypeScript ...
+  Finished TypeScript in 2.3s ...
+  Collecting page data using 6 workers ...
+  Generating static pages using 6 workers (0/4) ...
+  Generating static pages using 6 workers (1/4) 
+  Generating static pages using 6 workers (2/4) 
+  Generating static pages using 6 workers (3/4) 
+✓ Generating static pages using 6 workers (4/4) in 642ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/generate
+└ ○ /icon.svg
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

@@ -1,0 +1,78 @@
+{
+  "id": "scenario-003",
+  "version": "1",
+  "evidence": [
+    {
+      "id": "s003-e01",
+      "scenarioId": "scenario-003",
+      "kind": "deployment",
+      "source": "release-controller",
+      "timestamp": "2026-02-18T08:30:00.000Z",
+      "text": "Delivery-worker configuration mount rollout completed. Credential values and remote-provider validity were not checked.",
+      "severity": "info"
+    },
+    {
+      "id": "s003-e02",
+      "scenarioId": "scenario-003",
+      "kind": "log",
+      "source": "delivery-worker",
+      "timestamp": "2026-02-18T09:00:00.000Z",
+      "text": "Delivery provider returned HTTP 401 Unauthorized for credential label SYNTHETIC_KEY_DO_NOT_USE. Response omitted a reason code.",
+      "severity": "error"
+    },
+    {
+      "id": "s003-e03",
+      "scenarioId": "scenario-003",
+      "kind": "log",
+      "source": "delivery-worker",
+      "timestamp": "2026-02-18T09:01:00.000Z",
+      "text": "Retry returned HTTP 401 Unauthorized. The worker left the message pending for retry.",
+      "severity": "error"
+    },
+    {
+      "id": "s003-e04",
+      "scenarioId": "scenario-003",
+      "kind": "log",
+      "source": "credential-inventory",
+      "timestamp": "2026-02-18T09:01:20.000Z",
+      "text": "Redacted export for SYNTHETIC_KEY_DO_NOT_USE: expires_at=unavailable; revocation_state=unavailable; credential value=FAKE_NOT_A_SECRET. This export cannot establish expiry.",
+      "severity": "warning"
+    },
+    {
+      "id": "s003-e05",
+      "scenarioId": "scenario-003",
+      "kind": "metric",
+      "source": "queue-sampler",
+      "timestamp": "2026-02-18T09:02:00.000Z",
+      "text": "Delivery queue pending_messages=42. The sample does not identify unique recipients or establish message loss.",
+      "severity": "warning"
+    },
+    {
+      "id": "s003-e06",
+      "scenarioId": "scenario-003",
+      "kind": "log",
+      "source": "status-probe",
+      "timestamp": "2026-02-18T09:02:10.000Z",
+      "text": "Worker /health returned HTTP 200; this endpoint checks process liveness without authenticating to the delivery provider.",
+      "severity": "info"
+    },
+    {
+      "id": "s003-e07",
+      "scenarioId": "scenario-003",
+      "kind": "log",
+      "source": "change-planner",
+      "timestamp": "2026-02-18T09:03:00.000Z",
+      "text": "Credential rotation planned for 09:15Z. status=scheduled; no execution record included.",
+      "severity": "info"
+    },
+    {
+      "id": "s003-r01",
+      "scenarioId": "scenario-003",
+      "kind": "runbook",
+      "source": "delivery authentication runbook",
+      "timestamp": null,
+      "text": "Check provider-side credential expiry, revocation, scope and worker configuration. Any rotation requires operator approval. Verify a delivery attempt and queue progress after an approved change; do not infer expiry from HTTP 401 alone.",
+      "severity": "reference"
+    }
+  ]
+}

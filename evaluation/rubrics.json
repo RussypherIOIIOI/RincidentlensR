@@ -1,0 +1,524 @@
+{
+  "canary": "EVAL_ONLY_6A82_NO_RUNTIME",
+  "reviewPolicy": "AI-reviewed closed fixtures. New prose needs review; source ID validity is not semantic truth.",
+  "rubrics": [
+    {
+      "key": "scenario-001",
+      "reviewer": "AI coding assistant; no human review claimed",
+      "scope": "Exact closed-fixture review only; not general semantic entailment",
+      "requiredEvidence": [
+        {
+          "signal": "rollout completion",
+          "anyOf": ["s001-e02"]
+        },
+        {
+          "signal": "checkout connection failure",
+          "anyOf": ["s001-e03"]
+        },
+        {
+          "signal": "configuration change",
+          "anyOf": ["s001-e04"]
+        },
+        {
+          "signal": "sampled request impact",
+          "anyOf": ["s001-e05"]
+        },
+        {
+          "signal": "cached health limitation",
+          "anyOf": ["s001-e06"]
+        },
+        {
+          "signal": "queued rollback",
+          "anyOf": ["s001-e07"]
+        }
+      ],
+      "requiredUnknowns": [
+        "Recovery status and rollback completion are unknown.",
+        "The number of affected users and full incident duration are unknown.",
+        "The restart notice has no reliable event time."
+      ],
+      "supportedStatements": [
+        {
+          "signature": "4e5b5f3c6ce789d181790341fcc85e3b5b1eccef39019474d73cb438db1fca1e",
+          "text": "Checkout errors appeared after release v2.14.0, alongside a changed payments endpoint.",
+          "evidenceIds": ["s001-e02", "s001-e03", "s001-e04"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "934c08b537ac1941cffc3af6a619ffe1ff9a36494a6f9ea093cf474eb677f917",
+          "text": "17 of 100 sampled checkout requests returned HTTP 503 between 10:02 and 10:03 UTC.",
+          "evidenceIds": ["s001-e05"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "b4f086683ffb7e72e3916b018f27ec76f6aa7c3174d43907eab99c16bc179a34",
+          "text": "The rollout completed, but its startup probes did not verify checkout transactions.",
+          "evidenceIds": ["s001-e02"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "212757c2b3fed5421227000d4955dca0416b3d03a97556533b60b88b35e1a7f3",
+          "text": "The payments endpoint changed from port 8080 to 8081; a connection to port 8081 was refused.",
+          "evidenceIds": ["s001-e03", "s001-e04"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "7e1f2e525d9dbcd85e09b74739f3381f224f692c18eed23a3adccb7a1c364e63",
+          "text": "A cached health response returned HTTP 200 without exercising checkout.",
+          "evidenceIds": ["s001-e06"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "ee124c5a69ab52e34417d4a708bb492143ac3d6fd0a12ff67d14fe6981806d61",
+          "text": "The rollback request was queued; completion is not recorded in that event.",
+          "evidenceIds": ["s001-e07"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "fc3730c051038b7525586de2e7ab7787916a9fd4b34d1ebe037e5f8cefc71def",
+          "text": "The changed payments endpoint may be contributing to checkout failures.",
+          "evidenceIds": ["s001-e03", "s001-e04"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "d8ccd85f7f7c6881989a7dcb50708145e63b6f9b49f0589adcd9336df15ffafb",
+          "text": "Recovery status and rollback completion are unknown.",
+          "evidenceIds": ["s001-e07"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "6cb6096a81cd74809431dd41c527e258af967bc6306e9601664f9efc99a2eb3e",
+          "text": "The number of affected users and full incident duration are unknown.",
+          "evidenceIds": ["s001-e05"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "187595cd2c8929af870b4658b0d5d164a774c004b44e353ba069b947f9c12733",
+          "text": "The restart notice has no reliable event time.",
+          "evidenceIds": ["s001-e08"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "54d8ff67661bcfe81cb1b41f57fa19784c18c3651b9788386cf8920ff2d97207",
+          "text": "Verify the payments endpoint and connectivity from a checkout pod.",
+          "evidenceIds": ["s001-e03", "s001-e04", "s001-r01"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "f3c48f4ad67cd8d15965c5e261d5eee51cec5bf11a8690e49c88fbd9fdb28846",
+          "text": "Confirm rollback completion and collect a fresh checkout probe.",
+          "evidenceIds": ["s001-e06", "s001-e07", "s001-r01"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        }
+      ],
+      "unsupportedStatements": [
+        {
+          "text": "All users were affected and checkout was unavailable for two hours.",
+          "reason": "The sample counts requests, not unique users, and covers only one minute.",
+          "uncertaintyFailure": true
+        },
+        {
+          "text": "The runbook rollback was completed successfully.",
+          "reason": "A runbook is procedure; the release event only says rollback was queued.",
+          "uncertaintyFailure": true
+        },
+        {
+          "text": "The cached health check proves checkout was healthy.",
+          "reason": "The cached health check explicitly did not call checkout.",
+          "uncertaintyFailure": true
+        },
+        {
+          "text": "The credential expired at 09:00 UTC.",
+          "reason": "HTTP 401 omits a reason and the export has no expiry timestamp.",
+          "uncertaintyFailure": true
+        }
+      ]
+    },
+    {
+      "key": "scenario-002",
+      "reviewer": "AI coding assistant; no human review claimed",
+      "scope": "Exact closed-fixture review only; not general semantic entailment",
+      "requiredEvidence": [
+        {
+          "signal": "reserved database connection slots",
+          "anyOf": ["s002-e02"]
+        },
+        {
+          "signal": "application connection timeout",
+          "anyOf": ["s002-e03"]
+        },
+        {
+          "signal": "near-maximum connections",
+          "anyOf": ["s002-e04"]
+        },
+        {
+          "signal": "control-plane limitation",
+          "anyOf": ["s002-e05"]
+        },
+        {
+          "signal": "proposed intervention",
+          "anyOf": ["s002-e06"]
+        }
+      ],
+      "requiredUnknowns": [
+        "Recovery and the outcome of any intervention are unknown.",
+        "The client sessions responsible for connection pressure are unknown.",
+        "Affected-user count and total incident duration are unknown."
+      ],
+      "supportedStatements": [
+        {
+          "signature": "d966814ee287608b579cc70e01d362d4c7a7c5f251b701600757f967b6dfbe33",
+          "text": "Application database connections failed while the database reported almost all configured connection slots in use.",
+          "evidenceIds": ["s002-e02", "s002-e03", "s002-e04"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "42af29dd8e7b105f6e3bc60bc4bc4deb0cef53212d9d3dd29fb28abc66752f58",
+          "text": "An orders request returned HTTP 503 after a database connection acquisition timeout.",
+          "evidenceIds": ["s002-e03"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "c8f85ee0e85e320bb4909c5adc451e8dc03742158778e645ed0674150eb5af05",
+          "text": "PostgreSQL rejected a connection because remaining slots were reserved.",
+          "evidenceIds": ["s002-e02"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "4b83e99d2b5114f0e6565d4683b0d1ff3e6ef87c3818ac2d5f0b4efe6e9d9026",
+          "text": "A single sample showed 198 connections against a configured maximum of 200.",
+          "evidenceIds": ["s002-e04"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "c800e2deafb64969acc33360d3d29971de0b8669199423ae66d245e6c743eefd",
+          "text": "The primary was running, but the control-plane check did not test application queries.",
+          "evidenceIds": ["s002-e05"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "12ab6982e2140e5c83646da655bbe63358cf8e2abc14e28e6da23924877b7781",
+          "text": "Session termination was proposed; the note contains no execution record.",
+          "evidenceIds": ["s002-e06"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "47f11833c3df09be6b2debc61e1303124ac554f5fd669470f1f101da60f8d55f",
+          "text": "Connection-slot pressure may explain the application connection failures.",
+          "evidenceIds": ["s002-e02", "s002-e03", "s002-e04"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "f596d3acbdaaf0843d63982846689d2033803f9682093fa7d9e08be0d6f7dbbc",
+          "text": "The recent reporting-worker rollout could be worth comparing against session ownership.",
+          "evidenceIds": ["s002-e01", "s002-e04"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "74f9642c24e34b328bc51bb91002bd0861781e9b18a777f7224031e345f99214",
+          "text": "Recovery and the outcome of any intervention are unknown.",
+          "evidenceIds": ["s002-e06"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "099b7cedf5fe3520eb566730be47f2e8bc921771e39287fbb997d9d4a706699f",
+          "text": "The client sessions responsible for connection pressure are unknown.",
+          "evidenceIds": ["s002-e04"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "f43663a4d4ca4e5f92a358b9a0869db914ef5b74f164651d2b4b8242ee47b1a8",
+          "text": "Affected-user count and total incident duration are unknown.",
+          "evidenceIds": ["s002-e03"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "0ad1096c2a8268cfaa6670b21240f5713fc213804e794742abf8f9010458e29d",
+          "text": "Inspect session ownership and application pool settings.",
+          "evidenceIds": ["s002-e04", "s002-r01"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "f6348dfae74f4df6308d51f3914ffae9e3a060ab1908ee042239458b240286ab",
+          "text": "Compare reporting-worker activity without assuming it caused the outage.",
+          "evidenceIds": ["s002-e01", "s002-r01"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "88f6959dd7315453a6828034fdb95782578cd297c38b3b816882c534ec4c42a0",
+          "text": "Recheck application queries before concluding recovery.",
+          "evidenceIds": ["s002-e05", "s002-r01"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        }
+      ],
+      "unsupportedStatements": [
+        {
+          "text": "All users were affected and checkout was unavailable for two hours.",
+          "reason": "The sample counts requests, not unique users, and covers only one minute.",
+          "uncertaintyFailure": true
+        },
+        {
+          "text": "The runbook rollback was completed successfully.",
+          "reason": "A runbook is procedure; the release event only says rollback was queued.",
+          "uncertaintyFailure": true
+        },
+        {
+          "text": "The cached health check proves checkout was healthy.",
+          "reason": "The cached health check explicitly did not call checkout.",
+          "uncertaintyFailure": true
+        },
+        {
+          "text": "The credential expired at 09:00 UTC.",
+          "reason": "HTTP 401 omits a reason and the export has no expiry timestamp.",
+          "uncertaintyFailure": true
+        }
+      ]
+    },
+    {
+      "key": "scenario-003",
+      "reviewer": "AI coding assistant; no human review claimed",
+      "scope": "Exact closed-fixture review only; not general semantic entailment",
+      "requiredEvidence": [
+        {
+          "signal": "authentication failures",
+          "anyOf": ["s003-e02", "s003-e03"]
+        },
+        {
+          "signal": "missing expiry/revocation data",
+          "anyOf": ["s003-e04"]
+        },
+        {
+          "signal": "pending queue sample",
+          "anyOf": ["s003-e05"]
+        },
+        {
+          "signal": "liveness-only check",
+          "anyOf": ["s003-e06"]
+        },
+        {
+          "signal": "scheduled rotation",
+          "anyOf": ["s003-e07"]
+        }
+      ],
+      "requiredUnknowns": [
+        "Whether the credential expired is unknown.",
+        "Recovery and rotation completion are unknown.",
+        "Affected-recipient count, message loss and total duration are unknown."
+      ],
+      "supportedStatements": [
+        {
+          "signature": "4534c0ee090becbe81b94da5f4295577b20f1934babb362d861176b0b062815e",
+          "text": "The delivery worker received repeated HTTP 401 responses; the supplied credential export does not establish expiry.",
+          "evidenceIds": ["s003-e02", "s003-e03", "s003-e04"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "6fa438f422ce39644c1490757743e97ba049fe321d9ac38a597be2335c44bb4a",
+          "text": "A failed delivery remained pending for retry; a later queue sample contained 42 pending messages.",
+          "evidenceIds": ["s003-e03", "s003-e05"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "9884e2d47fcd6b6cbd22527a8ff4679c06704e62efdec6850a63a7de38dc75a4",
+          "text": "Two delivery attempts received HTTP 401 Unauthorized.",
+          "evidenceIds": ["s003-e02", "s003-e03"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "ca6fff667ec26a449ae5c7dba2bf0d5db70f7008a51f3e5f14679bab4187c481",
+          "text": "Credential expiry and revocation state are unavailable in the redacted export.",
+          "evidenceIds": ["s003-e04"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "2b00356a78a4bd9c80aebdbcc9f7b6d239686b922eed8cbc3d844192e0d38e9c",
+          "text": "The worker health check did not authenticate to the delivery provider.",
+          "evidenceIds": ["s003-e06"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "a1950818c69c6a9b922e7d946774475aa82d5a39c5c39fd620b0de7bb45cabe1",
+          "text": "Credential rotation was scheduled, with no execution record included.",
+          "evidenceIds": ["s003-e07"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "38b0e96e854f516d117a9804377cf309962c10e114900ca9f3c7cfd5a255e338",
+          "text": "An invalid, expired, revoked or misconfigured credential could explain the authentication failures.",
+          "evidenceIds": ["s003-e02", "s003-e03", "s003-e04"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "3018c679537c5c9f613bddcc34790289c4cefaf1ebfb2fe428d544e9f88d330d",
+          "text": "Whether the credential expired is unknown.",
+          "evidenceIds": ["s003-e02", "s003-e04"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "fa684cf61b9ae0d101bd1d32f9e5c23136626240bd6a2d833ef32363fbfe1710",
+          "text": "Recovery and rotation completion are unknown.",
+          "evidenceIds": ["s003-e07"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "940d73f2321bf76144df3c8292a6319dc220a6eba0367cd194cc4a2ac01a4623",
+          "text": "Affected-recipient count, message loss and total duration are unknown.",
+          "evidenceIds": ["s003-e05"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "a1a784390b0bca976cbc4704298caf80166b219808e6f060c15e799ea62a045b",
+          "text": "Inspect provider-side credential status and worker configuration.",
+          "evidenceIds": ["s003-e04", "s003-r01"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "c3592eba966225b67947b9fd37022b8194eb1e58d1b6b4476f24894c9fd4374c",
+          "text": "After any approved rotation, verify authenticated delivery and queue progress.",
+          "evidenceIds": ["s003-e06", "s003-e07", "s003-r01"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        }
+      ],
+      "unsupportedStatements": [
+        {
+          "text": "All users were affected and checkout was unavailable for two hours.",
+          "reason": "The sample counts requests, not unique users, and covers only one minute.",
+          "uncertaintyFailure": true
+        },
+        {
+          "text": "The runbook rollback was completed successfully.",
+          "reason": "A runbook is procedure; the release event only says rollback was queued.",
+          "uncertaintyFailure": true
+        },
+        {
+          "text": "The cached health check proves checkout was healthy.",
+          "reason": "The cached health check explicitly did not call checkout.",
+          "uncertaintyFailure": true
+        },
+        {
+          "text": "The credential expired at 09:00 UTC.",
+          "reason": "HTTP 401 omits a reason and the export has no expiry timestamp.",
+          "uncertaintyFailure": true
+        }
+      ]
+    },
+    {
+      "key": "incomplete-auth",
+      "reviewer": "AI coding assistant; no human review claimed",
+      "scope": "Exact closed-fixture review only; not general semantic entailment",
+      "requiredEvidence": [
+        {
+          "signal": "authentication failures",
+          "anyOf": ["s003-e02", "s003-e03"]
+        },
+        {
+          "signal": "pending queue sample",
+          "anyOf": ["s003-e05"]
+        },
+        {
+          "signal": "liveness-only check",
+          "anyOf": ["s003-e06"]
+        },
+        {
+          "signal": "scheduled rotation",
+          "anyOf": ["s003-e07"]
+        }
+      ],
+      "requiredUnknowns": [
+        "Whether the credential expired is unknown.",
+        "Recovery and rotation completion are unknown.",
+        "Affected-recipient count, message loss and total duration are unknown."
+      ],
+      "supportedStatements": [
+        {
+          "signature": "1fbe5a36ab56147cef56e65eb1713a0c6feef4137ff3f379a487cdad4023a2eb",
+          "text": "Two delivery attempts received HTTP 401 Unauthorized.",
+          "evidenceIds": ["s003-e02", "s003-e03"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "6fa438f422ce39644c1490757743e97ba049fe321d9ac38a597be2335c44bb4a",
+          "text": "A failed delivery remained pending for retry; a later queue sample contained 42 pending messages.",
+          "evidenceIds": ["s003-e03", "s003-e05"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "9884e2d47fcd6b6cbd22527a8ff4679c06704e62efdec6850a63a7de38dc75a4",
+          "text": "Two delivery attempts received HTTP 401 Unauthorized.",
+          "evidenceIds": ["s003-e02", "s003-e03"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "2b00356a78a4bd9c80aebdbcc9f7b6d239686b922eed8cbc3d844192e0d38e9c",
+          "text": "The worker health check did not authenticate to the delivery provider.",
+          "evidenceIds": ["s003-e06"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "a1950818c69c6a9b922e7d946774475aa82d5a39c5c39fd620b0de7bb45cabe1",
+          "text": "Credential rotation was scheduled, with no execution record included.",
+          "evidenceIds": ["s003-e07"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "102ba1fc668686d28b527bb75b572b4ba3eca869902aa395b5a3c398d67bd3c7",
+          "text": "An invalid, expired, revoked or misconfigured credential could explain the authentication failures.",
+          "evidenceIds": ["s003-e02", "s003-e03"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "5a2c0f711e9700c67376baf979abed5aa23760708b721c006fc5916ad272cddb",
+          "text": "Whether the credential expired is unknown.",
+          "evidenceIds": ["s003-e02"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "fa684cf61b9ae0d101bd1d32f9e5c23136626240bd6a2d833ef32363fbfe1710",
+          "text": "Recovery and rotation completion are unknown.",
+          "evidenceIds": ["s003-e07"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "940d73f2321bf76144df3c8292a6319dc220a6eba0367cd194cc4a2ac01a4623",
+          "text": "Affected-recipient count, message loss and total duration are unknown.",
+          "evidenceIds": ["s003-e05"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "e39e3837a44dd15e4b58a3ca159ec08eb867cbf21fca3f6a9c72ed4e88bba90f",
+          "text": "Inspect provider-side credential status and worker configuration.",
+          "evidenceIds": ["s003-r01"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        },
+        {
+          "signature": "c3592eba966225b67947b9fd37022b8194eb1e58d1b6b4476f24894c9fd4374c",
+          "text": "After any approved rotation, verify authenticated delivery and queue progress.",
+          "evidenceIds": ["s003-e06", "s003-e07", "s003-r01"],
+          "note": "AI-reviewed against cited synthetic source text; this exact fixture is the approved regression example."
+        }
+      ],
+      "unsupportedStatements": [
+        {
+          "text": "All users were affected and checkout was unavailable for two hours.",
+          "reason": "The sample counts requests, not unique users, and covers only one minute.",
+          "uncertaintyFailure": true
+        },
+        {
+          "text": "The runbook rollback was completed successfully.",
+          "reason": "A runbook is procedure; the release event only says rollback was queued.",
+          "uncertaintyFailure": true
+        },
+        {
+          "text": "The cached health check proves checkout was healthy.",
+          "reason": "The cached health check explicitly did not call checkout.",
+          "uncertaintyFailure": true
+        },
+        {
+          "text": "The credential expired at 09:00 UTC.",
+          "reason": "HTTP 401 omits a reason and the export has no expiry timestamp.",
+          "uncertaintyFailure": true
+        }
+      ]
+    }
+  ]
+}

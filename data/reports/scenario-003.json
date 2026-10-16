@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "1",
+  "scenarioId": "scenario-003",
+  "evidenceHash": "b7591a6ce5ee9d806f5be63601bac5e63f4eb7e1111e67d34412adf3ddb9a3ac",
+  "promptVersion": "1",
+  "reportVersion": "1",
+  "origin": "ai-authored-example",
+  "generatedAt": null,
+  "model": null,
+  "report": {
+    "summary": [
+      {
+        "id": "summary-1",
+        "text": "The delivery worker received repeated HTTP 401 responses; the supplied credential export does not establish expiry.",
+        "evidenceIds": [
+          "s003-e02",
+          "s003-e03",
+          "s003-e04"
+        ]
+      }
+    ],
+    "impact": [
+      {
+        "id": "impact-1",
+        "text": "A failed delivery remained pending for retry; a later queue sample contained 42 pending messages.",
+        "evidenceIds": [
+          "s003-e03",
+          "s003-e05"
+        ]
+      }
+    ],
+    "observations": [
+      {
+        "id": "observation-1",
+        "text": "Two delivery attempts received HTTP 401 Unauthorized.",
+        "evidenceIds": [
+          "s003-e02",
+          "s003-e03"
+        ]
+      },
+      {
+        "id": "observation-2",
+        "text": "Credential expiry and revocation state are unavailable in the redacted export.",
+        "evidenceIds": [
+          "s003-e04"
+        ]
+      },
+      {
+        "id": "observation-3",
+        "text": "The worker health check did not authenticate to the delivery provider.",
+        "evidenceIds": [
+          "s003-e06"
+        ]
+      },
+      {
+        "id": "observation-4",
+        "text": "Credential rotation was scheduled, with no execution record included.",
+        "evidenceIds": [
+          "s003-e07"
+        ]
+      }
+    ],
+    "hypotheses": [
+      {
+        "id": "hypothesis-1",
+        "text": "An invalid, expired, revoked or misconfigured credential could explain the authentication failures.",
+        "evidenceIds": [
+          "s003-e02",
+          "s003-e03",
+          "s003-e04"
+        ],
+        "uncertainty": "medium",
+        "gaps": [
+          "The provider reason code, expiry and revocation state are unavailable."
+        ],
+        "counterEvidenceIds": []
+      }
+    ],
+    "missingInformation": [
+      {
+        "id": "gap-1",
+        "text": "Whether the credential expired is unknown.",
+        "whyItMatters": "HTTP 401 alone does not distinguish expiry from other authentication failures.",
+        "nextCheck": "Check provider-side expiry, revocation, scope and worker configuration.",
+        "evidenceIds": [
+          "s003-e02",
+          "s003-e04"
+        ]
+      },
+      {
+        "id": "gap-2",
+        "text": "Recovery and rotation completion are unknown.",
+        "whyItMatters": "A scheduled rotation does not establish a successful authenticated delivery.",
+        "nextCheck": "Collect a rotation audit event and a later delivery result.",
+        "evidenceIds": [
+          "s003-e07"
+        ]
+      },
+      {
+        "id": "gap-3",
+        "text": "Affected-recipient count, message loss and total duration are unknown.",
+        "whyItMatters": "A queue-depth sample cannot establish these impact measures.",
+        "nextCheck": "Inspect message outcomes and the wider incident window.",
+        "evidenceIds": [
+          "s003-e05"
+        ]
+      }
+    ],
+    "nextChecks": [
+      {
+        "id": "check-1",
+        "text": "Inspect provider-side credential status and worker configuration.",
+        "rationale": "The export omits expiry and revocation state; the runbook lists additional authentication checks.",
+        "evidenceIds": [
+          "s003-e04",
+          "s003-r01"
+        ]
+      },
+      {
+        "id": "check-2",
+        "text": "After any approved rotation, verify authenticated delivery and queue progress.",
+        "rationale": "Rotation is only scheduled and the existing health probe checks liveness alone.",
+        "evidenceIds": [
+          "s003-e06",
+          "s003-e07",
+          "s003-r01"
+        ]
+      }
+    ]
+  }
+}

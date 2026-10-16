@@ -1,0 +1,11 @@
+node_modules
+.next
+playwright-report
+test-results
+coverage
+package-lock.json
+reports
+next-env.d.ts
+incidentlens-build-prompt-v1.2.md
+incidentlens-prompt+tools-execution.txt
+incidentlens_initial_build.txt

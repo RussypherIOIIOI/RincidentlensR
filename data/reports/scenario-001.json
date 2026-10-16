@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "1",
+  "scenarioId": "scenario-001",
+  "evidenceHash": "9a681d744320e6182ebb25aa6fefb1fb9c432429b4c9f55a6c5f5a5123d57cf1",
+  "promptVersion": "1",
+  "reportVersion": "1",
+  "origin": "ai-authored-example",
+  "generatedAt": null,
+  "model": null,
+  "report": {
+    "summary": [
+      {
+        "id": "summary-1",
+        "text": "Checkout errors appeared after release v2.14.0, alongside a changed payments endpoint.",
+        "evidenceIds": [
+          "s001-e02",
+          "s001-e03",
+          "s001-e04"
+        ]
+      }
+    ],
+    "impact": [
+      {
+        "id": "impact-1",
+        "text": "17 of 100 sampled checkout requests returned HTTP 503 between 10:02 and 10:03 UTC.",
+        "evidenceIds": [
+          "s001-e05"
+        ]
+      }
+    ],
+    "observations": [
+      {
+        "id": "observation-1",
+        "text": "The rollout completed, but its startup probes did not verify checkout transactions.",
+        "evidenceIds": [
+          "s001-e02"
+        ]
+      },
+      {
+        "id": "observation-2",
+        "text": "The payments endpoint changed from port 8080 to 8081; a connection to port 8081 was refused.",
+        "evidenceIds": [
+          "s001-e03",
+          "s001-e04"
+        ]
+      },
+      {
+        "id": "observation-3",
+        "text": "A cached health response returned HTTP 200 without exercising checkout.",
+        "evidenceIds": [
+          "s001-e06"
+        ]
+      },
+      {
+        "id": "observation-4",
+        "text": "The rollback request was queued; completion is not recorded in that event.",
+        "evidenceIds": [
+          "s001-e07"
+        ]
+      }
+    ],
+    "hypotheses": [
+      {
+        "id": "hypothesis-1",
+        "text": "The changed payments endpoint may be contributing to checkout failures.",
+        "evidenceIds": [
+          "s001-e03",
+          "s001-e04"
+        ],
+        "uncertainty": "medium",
+        "gaps": [
+          "The approved endpoint and pod-to-service connectivity are unknown."
+        ],
+        "counterEvidenceIds": []
+      }
+    ],
+    "missingInformation": [
+      {
+        "id": "gap-1",
+        "text": "Recovery status and rollback completion are unknown.",
+        "whyItMatters": "A queued request does not establish service restoration.",
+        "nextCheck": "Obtain a rollback completion event and fresh uncached checkout checks.",
+        "evidenceIds": [
+          "s001-e07"
+        ]
+      },
+      {
+        "id": "gap-2",
+        "text": "The number of affected users and full incident duration are unknown.",
+        "whyItMatters": "A one-minute request sample cannot establish unique-user impact or the incident end.",
+        "nextCheck": "Collect a wider request window and distinct-user impact measurements.",
+        "evidenceIds": [
+          "s001-e05"
+        ]
+      },
+      {
+        "id": "gap-3",
+        "text": "The restart notice has no reliable event time.",
+        "whyItMatters": "Its relationship to the rollout cannot be ordered.",
+        "nextCheck": "Recover the original timestamp from the emitting pod.",
+        "evidenceIds": [
+          "s001-e08"
+        ]
+      }
+    ],
+    "nextChecks": [
+      {
+        "id": "check-1",
+        "text": "Verify the payments endpoint and connectivity from a checkout pod.",
+        "rationale": "The endpoint changed and a connection was refused; the runbook recommends checking configuration and connectivity.",
+        "evidenceIds": [
+          "s001-e03",
+          "s001-e04",
+          "s001-r01"
+        ]
+      },
+      {
+        "id": "check-2",
+        "text": "Confirm rollback completion and collect a fresh checkout probe.",
+        "rationale": "The rollout controller only records a queued rollback, while the health response was cached.",
+        "evidenceIds": [
+          "s001-e06",
+          "s001-e07",
+          "s001-r01"
+        ]
+      }
+    ]
+  }
+}

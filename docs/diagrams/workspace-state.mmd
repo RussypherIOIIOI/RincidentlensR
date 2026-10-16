@@ -1,0 +1,20 @@
+stateDiagram-v2
+  [*] --> Example: Initial scenario
+  Example --> Pending: Explicit live generation
+  Live --> Pending: Explicit live generation
+  Pending --> Live: Valid current result
+  Pending --> Previous: Error or invalid result
+  Previous --> Pending: Retry
+  Example --> Example: Select scenario
+  Live --> Example: Select scenario
+  Previous --> Example: Select scenario
+  Pending --> Example: Select scenario and invalidate request
+  note right of Pending
+    Previous valid report remains visible.
+    Duplicate requests are blocked.
+    Stale results are ignored.
+  end note
+  note right of Example
+    Citation activation focuses and highlights
+    the actual source in every report state.
+  end note
