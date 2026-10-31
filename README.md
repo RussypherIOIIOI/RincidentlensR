@@ -23,7 +23,7 @@ Use **Node.js 24 LTS** and npm. The lockfile pins dependencies; the package engi
 For this Windows checkout:
 
 ```powershell
-Set-Location -LiteralPath 'C:\Users\david\.vscode\[personal_projects]\.ppp-incidentlens'
+Set-Location -LiteralPath 'C:\User\.vscode\projects]\.ppp-incidentlens'
 npm ci
 npm run dev
 ```
