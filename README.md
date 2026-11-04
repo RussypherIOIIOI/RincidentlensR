@@ -18,12 +18,21 @@ Built as an AI-assisted personal portfolio project with **Next.js, strict TypeSc
 
 ## Run locally
 
-Use **Node.js 24 LTS** and npm. The lockfile pins dependencies; the package engine permits Node 24–26. Recorded local checks used Node 25.9.0 and npm 11.12.1; CI targets Node 24.
+Use **Node.js 24 LTS** and npm. The lockfile pins dependencies; the package engine and CI target Node 24. Recorded local checks used Node 25.9.0 and npm 11.12.1; CI targets Node 24.
 
-For this Windows checkout:
+For a new checkout (Git required), run:
+
+```bash
+git clone https://github.com/RussypherIOIIOI/RincidentlensR.git
+cd RincidentlensR
+npm ci
+npm run dev
+```
+
+For the owner's existing Windows checkout (verify the folder exists first):
 
 ```powershell
-Set-Location -LiteralPath 'C:\User\.vscode\projects]\.ppp-incidentlens'
+Set-Location -LiteralPath 'C:\Users\david\.vscode\[personal_projects]\.ppp-incidentlens'
 npm ci
 npm run dev
 ```
@@ -62,6 +71,8 @@ The JARVIS interface uses **Void #08070D**, **Iris #7F00FF**, **NVIDIA Green #76
 ## Verify
 
 ```bash
+npm run audit
+npm run audit:prod
 npm run check
 npm run format:check
 npx playwright install chromium
@@ -70,7 +81,7 @@ npm run test:e2e
 
 `check` runs type checking, lint, 60 current unit/component tests, 14 offline evaluation cases, and a production build. Browser tests start a separate production server on port 3107.
 
-**Recorded evidence:** the initial implementation passed four Chromium tests. After the JARVIS theme change, static checks, 60 tests, 14 evaluation cases, production build, and selected text-color contrast calculations passed. Browser checks were not rerun after that change because browser automation was blocked. These are dated local observations, not remote CI results or a live-model accuracy score. [Verification record and remaining checks](docs/verification.md).
+**Recorded evidence:** [GitHub Actions run 41211693995](https://github.com/RussypherIOIIOI/RincidentlensR/actions/runs/41211693995) passed on commit `20f7769` on 2026-10-31, including 60 unit/component tests, 14 expected evaluation outcomes, production build, and four Chromium tests after the JARVIS theme update. That historical run does not verify later code. See the [verification record](docs/verification.md) and [release guide](docs/release.md) for current evidence and deployment status. Fixture outcomes are not live-model accuracy or full accessibility certification.
 
 ## Optional live mode
 

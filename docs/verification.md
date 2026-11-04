@@ -20,12 +20,17 @@ The documentation update checks local file/section links, npm-script references,
 
 Application source is unchanged by this documentation update. Historical application test results remain historical; rerunning a formatter or link checker is not a fresh browser or provider test.
 
+## Remote CI: 2026-10-31
+
+[Run 41211693995](https://github.com/RussypherIOIIOI/RincidentlensR/actions/runs/41211693995) completed successfully for `20f7769b94a70e05853467991687df1c96a27594`. Its logs record 60 unit/component tests, 14 expected fixture outcomes, and four Chromium tests; the browser command includes the production build. This closes the historical post-theme browser/remote-CI gap above. The install reported 11 moderate affected packages, subsequently traced to one tooling advisory; see [dependency triage](dependency-triage.md).
+
+The original records above remain unchanged. New release evidence belongs in the [release guide](release.md), with the tested commit and actual deployment explicitly identified.
+
 ## Remaining work before stronger claims
 
-- Run Chromium tests and visually inspect desktop/mobile JARVIS views in an environment where browser automation is permitted.
+- Verify each new release candidate in CI and visually inspect the actual public desktop/mobile deployment where browser access is permitted.
 - Run an authorized paid smoke test for the chosen available model, checking structured-output/schema compatibility and error behavior.
 - Independently review newly generated claims and repeated live outputs; no human semantic review or live-model accuracy result is recorded.
-- Execute the supplied workflow in a remote repository before claiming CI is green remotely.
 - Verify a public bundled deployment before sharing a public demo URL.
 
-The model adapter has been exercised through mocked provider HTTP. No paid generation, real incident ingestion, remote repository publication, or external deployment is claimed. The evaluation corpus is AI-reviewed, closed-fixture regression rather than general entailment assessment.
+The model adapter has been exercised through mocked provider HTTP. No paid generation, real incident ingestion, or verified external deployment is claimed here. The source is published on GitHub, with remote CI evidence above. The evaluation corpus is AI-reviewed, closed-fixture regression rather than general entailment assessment.

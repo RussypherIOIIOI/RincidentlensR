@@ -1,0 +1,34 @@
+name: Smoke deployed IncidentLens
+on:
+  workflow_dispatch:
+    inputs:
+      origin:
+        description: Actual IncidentLens HTTPS production origin (no credentials or path)
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      INCIDENTLENS_SMOKE_URL: ${{ inputs.origin }}
+      INCIDENTLENS_LIVE_MODE: disabled
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: incidentlens-hosted-smoke
+          path: playwright-report/
+          retention-days: 14
