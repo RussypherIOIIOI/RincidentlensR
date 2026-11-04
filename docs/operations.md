@@ -72,7 +72,7 @@ The UI preserves the active scenario’s last valid report on refusal, truncatio
 
 ## Public bundled deployment
 
-No public deployment has been performed. To deploy the existing bundled experience on a Next.js-compatible Node host:
+Consult the [release guide](release.md) for current status, exact runtime/build settings, audit policy, hosted smoke commands, and rollback procedure. To deploy the bundled experience on a Next.js-compatible Node host:
 
 1. Select the application root containing `package.json`; the extra nested `incidentlens` folder has been removed.
 2. Install with `npm ci`, build with `npm run build`, and use the host’s Next.js runtime/start configuration.

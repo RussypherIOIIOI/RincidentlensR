@@ -18,6 +18,8 @@ Choose the path that matches your review.
 | Review the trust and deployment model           | [Security](../SECURITY.md)                          |
 | Review delivered changes                        | [Changelog](../CHANGELOG.md)                        |
 
+Release maintainers: [Release guide](release.md) · [Dependency triage](dependency-triage.md).
+
 For the mechanical hash/signature update after semantic review, use the [fixture maintenance recipe](fixture-maintenance.md).
 
-Diagrams are embedded where explained. Editable Mermaid sources are in [diagrams](diagrams/README.md). Source and tests are authoritative when implementation changes. Documentation describes this checkout as of **2026-10-15**.
+Diagrams are embedded where explained. Editable Mermaid sources are in [diagrams](diagrams/README.md). Source and tests are authoritative when implementation changes. Initial documentation was authored on **2026-10-15**. Release updates are dated separately in the verification and release records.
