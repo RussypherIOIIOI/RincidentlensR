@@ -1,0 +1,107 @@
+{
+  "date": "2026-11-04",
+  "timezone": "America/Denver",
+  "origin": "https://incidentlens-rose.vercel.app",
+  "deployedCommit": "283c5275932706498211ffbd9053bd494194ab0e",
+  "deploymentId": "dpl_2HG73cVU45CQ2PuJLu1P4kKywRaD",
+  "deploymentHostname": "incidentlens-cj7p4ynw6-drmeredith3-1399.vercel.app",
+  "projectId": "prj_IhtoWtrg78sBB1eSGWmOn7zm6Wp7",
+  "ciRun": "https://github.com/RussypherIOIIOI/RincidentlensR/actions/runs/41772283764",
+  "configuredHostingNode": "24.x",
+  "exactHostingNodePatch": "not reported in inspected build logs",
+  "runner": {
+    "node": "24.18.0",
+    "npm": "11.16.0",
+    "playwright": "1.64.1",
+    "browser": "Chromium 156.0.8078.79",
+    "platform": "Alpine Linux",
+    "adapter": "Temporary config imports committed Playwright config; sets system browser executable and JSON reporter only."
+  },
+  "command": "INCIDENTLENS_SMOKE_URL=https://incidentlens-rose.vercel.app npm run test:e2e -- --config=playwright.hosted.config.ts",
+  "exitCode": 0,
+  "anonymousHttp": {
+    "page": 200,
+    "font": 200,
+    "validScenarioPost": {
+      "status": 403,
+      "code": "LIVE_DISABLED"
+    },
+    "forgedEnableLivePost": {
+      "status": 403,
+      "code": "LIVE_DISABLED"
+    }
+  },
+  "environment": {
+    "projectVariableNames": [],
+    "hiddenProductionEnvCount": 0
+  },
+  "visualReview": {
+    "reviewer": "AI coding assistant",
+    "desktop": "1440x1000",
+    "mobile": "390x844",
+    "humanReview": false
+  },
+  "paidProviderCalls": 0,
+  "notes": [
+    "This evidence commit follows the tested deployment; it is not the deployed code SHA.",
+    "Production domain is public; preview and unique deployment URL authentication remain enabled."
+  ],
+  "stats": {
+    "startTime": "2026-11-04T16:31:00.594Z",
+    "duration": 31449.523999999998,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "credential-free recruiter journey across all scenarios and source references",
+      "ok": true,
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 20298,
+          "retry": 0,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "public API refuses valid and forged paid-generation requests",
+      "ok": true,
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 709,
+          "retry": 0,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "desktop workspace has no serious or critical accessibility violations",
+      "ok": true,
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 4415,
+          "retry": 0,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "all mobile scenarios fit the viewport and citations move focus with reduced motion",
+      "ok": true,
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 4252,
+          "retry": 0,
+          "errors": []
+        }
+      ]
+    }
+  ]
+}

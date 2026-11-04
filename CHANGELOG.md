@@ -2,6 +2,22 @@
 
 This records delivered project changes. Source publication is separate from an application deployment or tagged release.
 
+## 2026-11-04
+
+### Public portfolio release
+
+- Published the credential-free demo at https://incidentlens-rose.vercel.app.
+- Verified all four browser journeys against the hosted origin, including citations, mobile behavior, font loading, and server rejection of paid generation.
+- Linked Vercel to the repository, pinned Node 24, and retained protection for preview/deployment URLs while the production domain is public.
+- Recorded the exact first deployed commit and deployment ID; no paid provider calls were made.
+
+## 2026-11-03
+
+### Release preparation
+
+- Resolved one minimatch advisory affecting 11 tooling packages with a tested version-scoped override.
+- Added full/production audit gates, deployment-aware smoke checks, corrected setup instructions, and release evidence.
+
 ## 2026-10-16
 
 ### Repository publication

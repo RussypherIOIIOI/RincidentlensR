@@ -28,13 +28,20 @@ The original records above remain unchanged. New release evidence belongs in the
 
 ## Release candidate: 2026-11-03 (America/Denver)
 
-[Run 41771873599](https://github.com/RussypherIOIIOI/RincidentlensR/actions/runs/41771873599) verified `bf8e83e9b43b2e16815fe0010f6d4f4db7a3c9cb` with clean installation, zero full/production audit findings, formatting, type checking, lint, 60 tests, 14 expected evaluation outcomes, production build, and four expanded Chromium tests. The parallel PR workflow also passed. [PR #1](https://github.com/RussypherIOIIOI/RincidentlensR/pull/1) merged the code as `3b22f65c43407e875d612fd761e4b4154d5aebff`. This dated evidence update is separate from that tested code commit. See [release evidence](../reports/release/ci.json) and [the remaining hosting action](release.md#required-owner-action-connect-github-to-vercel).
+[Run 41771873599](https://github.com/RussypherIOIIOI/RincidentlensR/actions/runs/41771873599) verified `bf8e83e9b43b2e16815fe0010f6d4f4db7a3c9cb` with clean installation, zero full/production audit findings, formatting, type checking, lint, 60 tests, 14 expected evaluation outcomes, production build, and four expanded Chromium tests. The parallel PR workflow also passed. [PR #1](https://github.com/RussypherIOIIOI/RincidentlensR/pull/1) merged the code as `3b22f65c43407e875d612fd761e4b4154d5aebff`. This dated evidence update is separate from that tested code commit. See [release evidence](../reports/release/ci.json) and [the hosting release record](release.md#completed-owner-setup).
+
+## Public portfolio release: 2026-11-04
+
+[IncidentLens](https://incidentlens-rose.vercel.app) was deployed from `283c5275932706498211ffbd9053bd494194ab0e` as Vercel deployment `dpl_2HG73cVU45CQ2PuJLu1P4kKywRaD`. [CI run 41772283764](https://github.com/RussypherIOIIOI/RincidentlensR/actions/runs/41772283764) passed on that exact commit. Vercel completed `npm ci` (zero reported vulnerabilities), saved-report validation, and the production build.
+
+All four existing browser tests passed against the anonymous HTTPS production origin using Playwright 1.64.1 with Alpine Chromium 156.0.8078.79. The only temporary runner change was the browser executable path; no local server or authentication bypass was used. The run checked all three scenarios, every citation, provenance, font loading, desktop/mobile layout, keyboard focus, reduced motion, selected axe checks, and valid/forged API requests returning `403 LIVE_DISABLED`. Additional anonymous page/font requests returned HTTP 200. Desktop and mobile screenshots were visually inspected by the coding assistant; this is not a human UX review.
+
+See [hosted evidence](../reports/release/hosted.json) and [the release guide](release.md). This evidence is a documentation-only follow-up to the deployed code; it does not retroactively claim that the evidence commit was deployed or tested.
 
 ## Remaining work before stronger claims
 
 - Verify each new release candidate in CI and visually inspect the actual public desktop/mobile deployment where browser access is permitted.
 - Run an authorized paid smoke test for the chosen available model, checking structured-output/schema compatibility and error behavior.
 - Independently review newly generated claims and repeated live outputs; no human semantic review or live-model accuracy result is recorded.
-- Verify a public bundled deployment before sharing a public demo URL.
 
-The model adapter has been exercised through mocked provider HTTP. No paid generation, real incident ingestion, or verified external deployment is claimed here. The source is published on GitHub, with remote CI evidence above. The evaluation corpus is AI-reviewed, closed-fixture regression rather than general entailment assessment.
+The model adapter has been exercised through mocked provider HTTP. No paid generation or real incident ingestion is claimed here. External bundled deployment is verified above. The source is published on GitHub, with remote CI evidence above. The evaluation corpus is AI-reviewed, closed-fixture regression rather than general entailment assessment.

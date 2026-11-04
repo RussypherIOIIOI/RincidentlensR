@@ -1,16 +1,24 @@
 # Portfolio release
 
-## Current status — 2026-11-03
+## Current status — 2026-11-04
 
-**READY BUT BLOCKED:** the release code passed [CI run 41771873599](https://github.com/RussypherIOIIOI/RincidentlensR/actions/runs/41771873599) at `bf8e83e9b43b2e16815fe0010f6d4f4db7a3c9cb` and was merged through [PR #1](https://github.com/RussypherIOIIOI/RincidentlensR/pull/1), merge commit `3b22f65c43407e875d612fd761e4b4154d5aebff`. This is a documentation-only evidence follow-up; no deployed SHA is claimed.
+**RELEASED AND VERIFIED:** [Open IncidentLens](https://incidentlens-rose.vercel.app). The production domain is public and credential-free. All three bundled scenarios work, and public generation is rejected server-side.
 
-Vercel team access for `drmeredith3-1399` now works, and exact-repository/name searches found no project. Creation of a linked project failed with: “You need to add a Login Connection to your GitHub account first.” No project or public deployment was created, and hosted-origin smoke checks remain unperformed.
+The first verified production deployment is `dpl_2HG73cVU45CQ2PuJLu1P4kKywRaD`, built from `283c5275932706498211ffbd9053bd494194ab0e`. [CI run 41772283764](https://github.com/RussypherIOIIOI/RincidentlensR/actions/runs/41772283764) passed on that exact commit. This document and the hosted evidence are a documentation-only follow-up. A later documentation deployment is a separate deployment; its SHA must not be substituted into the original evidence.
 
-The Windows execution backend was unavailable and the registered Desktop Commander device was offline. Work used an isolated copy of GitHub base `20f7769b94a70e05853467991687df1c96a27594`; the owner's local checkout and working prompts were not changed or inspected. Use the release PR/CI commit as the authoritative candidate, not an assumed local SHA.
+Project: `incidentlens` / `prj_IhtoWtrg78sBB1eSGWmOn7zm6Wp7`, scope `drmeredith3-1399`, linked to `RussypherIOIIOI/RincidentlensR`. The project uses Node `24.x`, Next.js, `npm ci`, and `npm run build`. No project environment variables or hidden production variables were present at release inspection. Preview and unique deployment URLs retain Vercel authentication; the production alias is anonymously accessible.
 
-## Verified candidate
+The Windows execution backend remained unavailable. Release work used GitHub and isolated tooling; the owner's local checkout and working prompts were not changed. GitHub is the authoritative release source.
 
-GitHub CI used Node 24.22.1 / npm 11.19.1 and passed clean installation, full and production audits (zero findings), formatting, type checking, lint, **60 unit/component tests**, **14 expected fixture outcomes**, production build/data validation, and **four Chromium tests**. [Machine-readable evidence](../reports/release/ci.json) distinguishes this exact candidate from later documentation commits. The initial candidate failed formatting because a transfer stripped final newlines; corrected bytes were committed and both push and PR workflows passed. No checks were disabled.
+## Verification evidence
+
+- Exact-commit CI: clean install; zero full/production audit findings; formatting; type checking; lint; **60 unit/component tests**; **14 expected fixture outcomes**; production build/data validation; **four Chromium tests**.
+- Vercel: successful clean install (zero reported vulnerabilities), all saved reports validated, production build and deployment completed. Node 24.x is verified from project configuration; the build log did not report its exact patch version.
+- Hosted origin: **four tests passed**, no skips or retries, with Playwright 1.64.1 and Alpine Chromium 156.0.8078.79. All scenarios, every citation, keyboard focus/highlight/scroll, runbook references, provenance, font loading, desktop/mobile layout, reduced motion, selected axe checks, and valid/forged API rejection were checked anonymously.
+- HTTP: page and Matrix Sans returned 200; both generation requests returned 403 with `LIVE_DISABLED`.
+- Visual: the coding assistant inspected desktop 1440×1000 and mobile 390×844 screenshots. No human UX or semantic review is claimed.
+
+[Hosted evidence](../reports/release/hosted.json) records deployment identity and results. [Candidate evidence](../reports/release/ci.json), [historical verification](verification.md), and [dependency triage](dependency-triage.md) preserve earlier stages. Four browser tests do not establish full WCAG compliance; fixture results are not live-model accuracy.
 
 ## Reproduce the gates
 
@@ -29,51 +37,44 @@ npx playwright install --with-deps chromium
 npm run test:e2e
 ```
 
-The last command validates the saved bundles, builds production, starts a separate loopback server, and runs the browser suite. A separate `npm run build` is unnecessary when that command completes successfully. CI preserves evaluation, audit, and browser artifacts for 14 days. See [dependency triage](dependency-triage.md) for the temporary, tested minimatch override.
+The last command validates the saved bundles, builds production, starts a separate loopback server, and runs the browser suite. CI preserves evaluation, audit, and browser artifacts for 14 days. No check was disabled to obtain a passing result.
 
-## Hosting settings and release sequence
+## Verify the hosted origin
 
-1. In the authorized Vercel scope, find a project linked to `RussypherIOIIOI/RincidentlensR` before creating one.
-2. Use the repository root, **Next.js** preset, **Node 24.x**, install `npm ci`, build `npm run build`, and the framework's default output directory. The committed `vercel.json` and `engines.node` make these choices reproducible.
-3. Deploy the exact candidate whose CI passed. Record its commit, deployment ID, build URL, and runtime version from logs. Do not promote failed checks.
-4. Keep `INCIDENTLENS_LIVE_MODE` disabled or absent. Do not add an OpenAI key or model for the bundled demo. The production server rejects generation even with forged client options.
-5. Confirm anonymous HTTPS access, run the hosted smoke command below, and inspect desktop/mobile appearance. Then share the actual host-issued production URL and update the README/repository homepage.
-6. Record the tested code SHA separately from any later documentation-only evidence commit. Never claim a previous green run verified changed code.
-
-Runtime reference: [Vercel Node versions](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions). Node's package engine overrides the project setting, so this project deliberately uses `24.x`.
-
-## Test the actual deployed origin
-
-After deployment, copy its production origin from Vercel. In PowerShell, from the checkout:
+From the checkout in PowerShell:
 
 ```powershell
-$env:INCIDENTLENS_SMOKE_URL = Read-Host 'Paste the actual HTTPS production origin from Vercel'
+$env:INCIDENTLENS_SMOKE_URL = 'https://incidentlens-rose.vercel.app'
 try {
   npm run test:e2e
-  if ($LASTEXITCODE -ne 0) { throw 'Hosted smoke checks failed; do not announce release.' }
+  if ($LASTEXITCODE -ne 0) { throw 'Hosted smoke checks failed; investigate before sharing the release.' }
 } finally {
   Remove-Item Env:INCIDENTLENS_SMOKE_URL -ErrorAction SilentlyContinue
 }
 ```
 
-This uses a fresh anonymous browser context, no auth bypass token, and does not launch localhost. It checks all three scenarios, every citation's keyboard focus/highlight/viewport, runbook references, example provenance, loaded Matrix Sans, no unexpected cross-origin/provider requests, desktop/mobile overflow, reduced motion, selected automated accessibility checks, and valid/forged API requests returning `403 LIVE_DISABLED`. It is not proof of full WCAG compliance or model quality.
+With this variable set, Playwright starts no local server. It uses anonymous contexts and does not supply Vercel bypass credentials. The **Smoke deployed IncidentLens** GitHub workflow can run the same suite with this origin as its input. Match its checked-out code to the deployment being tested.
 
-The **Smoke deployed IncidentLens** GitHub workflow provides the same command for an actual HTTPS origin. Select the tested code branch/commit when dispatching; verify the run's head SHA and URL input. A successful local CI journey alone is not hosted-release evidence.
+The recorded Alpine run used a temporary config that imported the committed config and set only `use.launchOptions.executablePath` to `/usr/bin/chromium-browser`, plus a JSON reporter. The committed browser tests were unchanged. Standard CI uses Playwright's installed Chromium.
 
-## Required owner action: connect GitHub to Vercel
+## Future releases
 
-Vercel requires an interactive account login connection that Codex cannot approve for the owner. Team consent is already resolved; do not repeat it. This step blocks publishing.
+1. Use this existing linked project. Keep the repository root, Next.js preset, Node 24.x, `npm ci`, `npm run build`, and default output directory.
+2. Require CI success for the release SHA. Record the current good deployment ID before replacing it. Git pushes can trigger Vercel deployments; a successful Vercel build does not establish CI or browser success.
+3. Keep public generation disabled. Do not add a provider key/model for the bundled demo.
+4. Verify the actual production alias anonymously with hosted smoke after each deployment. Record the exact deployment SHA and ID separately from any evidence-only commit.
+5. Retain the previous good deployment when a candidate fails. Publish only the tested URL.
 
-1. Sign into [Vercel](https://vercel.com/dashboard) as `drmeredith3-1399`, with access to GitHub account `RussypherIOIIOI`.
-2. Open your profile picture → **Settings** → **Authentication**.
-3. Add **GitHub**, sign in as `RussypherIOIIOI`, and approve Vercel's authorization. If repository permissions are requested, grant access to `RincidentlensR` only. If GitHub is already connected to a different Vercel account, stop and identify the intended account before transferring that connection.
-4. Return to Authentication and confirm the GitHub connection is listed. Tell Codex it is connected; no token, password, screenshot of credentials, API key, or billing upgrade is needed.
-5. Codex retries the linked-project creation, verifies the current candidate's CI, deploys the bundled app, runs anonymous hosted smoke, and updates the real demo link. The expected final result is a public HTTPS demo with generation disabled; connection alone does not establish a successful release.
+References: [Vercel Node versions](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions), [GitHub integration](https://vercel.com/docs/git/vercel-for-github), [Playwright web-server configuration](https://playwright.dev/docs/test-webserver).
 
-Current navigation reference: [Vercel account management](https://vercel.com/docs/accounts).
+## Completed owner setup
+
+The owner completed Vercel team consent, connected GitHub account `RussypherIOIIOI` to Vercel account `drmeredith3-1399`, and installed the Vercel GitHub App with repository access. These are resolved prerequisites, not outstanding tasks.
+
+User action required for this release: none.
 
 ## Rollback and limitations
 
-No previous verified production deployment is recorded, so no rollback target is claimed. Before replacing a later release, record the current good deployment ID/URL/SHA. If a candidate fails, retain that release; use Vercel's project-scoped rollback to the recorded ID and rerun hosted smoke. For a first release, keep a failing candidate unpublished.
+The first verified deployment `dpl_2HG73cVU45CQ2PuJLu1P4kKywRaD` is a known-good reference for later releases. Its hostname is `incidentlens-cj7p4ynw6-drmeredith3-1399.vercel.app` (protected deployment URL). There was no earlier production deployment to roll back to. For a later failure, restore the recorded good deployment through Vercel's project-scoped rollback and rerun hosted smoke; retain its artifacts while rollback is needed.
 
-Reports and semantic fixture annotations are AI-authored; no human review or live-model accuracy is asserted. Provider testing uses mocks. Paid smoke/evaluation is optional and requires separate explicit authorization; it is not required for this bundled portfolio release.
+Reports and semantic fixture annotations are AI-authored. Provider tests use mocks. Paid smoke/evaluation requires separate explicit authorization and remains unperformed. Those limits do not prevent use of this bundled portfolio demo.

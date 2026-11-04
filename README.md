@@ -6,6 +6,8 @@ IncidentLens turns small synthetic incident bundles into inspectable investigati
 
 Built as an AI-assisted personal portfolio project with **Next.js, strict TypeScript, React, Zod, and a server-side OpenAI integration**. The public-demo path uses bundled reports and requires no API key or AI request.
 
+**[Open the live portfolio demo](https://incidentlens-rose.vercel.app)** — no sign-in or API key required.
+
 ## See the project in 90 seconds
 
 1. Open **Failed deployment** and follow a summary citation. Compare rollout completion, checkout errors, and the cached health response.
@@ -81,7 +83,7 @@ npm run test:e2e
 
 `check` runs type checking, lint, 60 current unit/component tests, 14 offline evaluation cases, and a production build. Browser tests start a separate production server on port 3107.
 
-**Release-candidate evidence:** [GitHub Actions run 41771873599](https://github.com/RussypherIOIIOI/RincidentlensR/actions/runs/41771873599) passed on `bf8e83e9` on 2026-11-03 (America/Denver): clean install, zero full/production audit findings, formatting, type checking, lint, 60 tests, 14 expected fixture outcomes, production build, and four expanded Chromium tests. The code was merged through [PR #1](https://github.com/RussypherIOIIOI/RincidentlensR/pull/1). See [historical verification](docs/verification.md) and the [release guide](docs/release.md) for exact SHAs and the remaining Vercel login-connection blocker. Fixture outcomes are not live-model accuracy or full accessibility certification.
+**Release-candidate evidence:** [GitHub Actions run 41771873599](https://github.com/RussypherIOIIOI/RincidentlensR/actions/runs/41771873599) passed on `bf8e83e9` on 2026-11-03 (America/Denver): clean install, zero full/production audit findings, formatting, type checking, lint, 60 tests, 14 expected fixture outcomes, production build, and four expanded Chromium tests. The code was merged through [PR #1](https://github.com/RussypherIOIIOI/RincidentlensR/pull/1). See [historical verification](docs/verification.md) and the [release guide](docs/release.md) for exact SHAs and the verified public deployment. Fixture outcomes are not live-model accuracy or full accessibility certification.
 
 ## Optional live mode
 
@@ -93,7 +95,7 @@ The integration uses the official OpenAI SDK and Responses structured outputs, w
 
 Start with the [documentation index](docs/README.md) for contracts/API, evaluation, architecture decisions, security, operations, and the design system. Contributors should read [CONTRIBUTING.md](CONTRIBUTING.md); deployment boundaries are summarized in [SECURITY.md](SECURITY.md).
 
-Live ingestion, arbitrary uploads, autonomous remediation, vector search, accounts, and chat/report history are deliberately outside this release. The source is published at [RussypherIOIIOI/RincidentlensR](https://github.com/RussypherIOIIOI/RincidentlensR). No public application deployment is recorded.
+Live ingestion, arbitrary uploads, autonomous remediation, vector search, accounts, and chat/report history are deliberately outside this release. The source is published at [RussypherIOIIOI/RincidentlensR](https://github.com/RussypherIOIIOI/RincidentlensR). The [public bundled demo](https://incidentlens-rose.vercel.app) was deployed and passed all four hosted browser checks on 2026-11-04. Public live generation remains disabled.
 
 ## License
 
