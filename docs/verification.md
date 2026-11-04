@@ -26,6 +26,10 @@ Application source is unchanged by this documentation update. Historical applica
 
 The original records above remain unchanged. New release evidence belongs in the [release guide](release.md), with the tested commit and actual deployment explicitly identified.
 
+## Release candidate: 2026-11-03 (America/Denver)
+
+[Run 41771873599](https://github.com/RussypherIOIIOI/RincidentlensR/actions/runs/41771873599) verified `bf8e83e9b43b2e16815fe0010f6d4f4db7a3c9cb` with clean installation, zero full/production audit findings, formatting, type checking, lint, 60 tests, 14 expected evaluation outcomes, production build, and four expanded Chromium tests. The parallel PR workflow also passed. [PR #1](https://github.com/RussypherIOIIOI/RincidentlensR/pull/1) merged the code as `3b22f65c43407e875d612fd761e4b4154d5aebff`. This dated evidence update is separate from that tested code commit. See [release evidence](../reports/release/ci.json) and [the remaining hosting action](release.md#required-owner-action-connect-github-to-vercel).
+
 ## Remaining work before stronger claims
 
 - Verify each new release candidate in CI and visually inspect the actual public desktop/mobile deployment where browser access is permitted.

@@ -81,7 +81,7 @@ npm run test:e2e
 
 `check` runs type checking, lint, 60 current unit/component tests, 14 offline evaluation cases, and a production build. Browser tests start a separate production server on port 3107.
 
-**Recorded evidence:** [GitHub Actions run 41211693995](https://github.com/RussypherIOIIOI/RincidentlensR/actions/runs/41211693995) passed on commit `20f7769` on 2026-10-31, including 60 unit/component tests, 14 expected evaluation outcomes, production build, and four Chromium tests after the JARVIS theme update. That historical run does not verify later code. See the [verification record](docs/verification.md) and [release guide](docs/release.md) for current evidence and deployment status. Fixture outcomes are not live-model accuracy or full accessibility certification.
+**Release-candidate evidence:** [GitHub Actions run 41771873599](https://github.com/RussypherIOIIOI/RincidentlensR/actions/runs/41771873599) passed on `bf8e83e9` on 2026-11-03 (America/Denver): clean install, zero full/production audit findings, formatting, type checking, lint, 60 tests, 14 expected fixture outcomes, production build, and four expanded Chromium tests. The code was merged through [PR #1](https://github.com/RussypherIOIIOI/RincidentlensR/pull/1). See [historical verification](docs/verification.md) and the [release guide](docs/release.md) for exact SHAs and the remaining Vercel login-connection blocker. Fixture outcomes are not live-model accuracy or full accessibility certification.
 
 ## Optional live mode
 

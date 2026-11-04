@@ -2,9 +2,15 @@
 
 ## Current status — 2026-11-03
 
-Release preparation is in progress. The application has not yet been verified on a public production origin. The connected Vercel account is `drmeredith3-1399`, but team-scoped project access returned HTTP 403 requiring account-owner consent. An empty unscoped project list does not prove that the team has no existing project.
+**READY BUT BLOCKED:** the release code passed [CI run 41771873599](https://github.com/RussypherIOIIOI/RincidentlensR/actions/runs/41771873599) at `bf8e83e9b43b2e16815fe0010f6d4f4db7a3c9cb` and was merged through [PR #1](https://github.com/RussypherIOIIOI/RincidentlensR/pull/1), merge commit `3b22f65c43407e875d612fd761e4b4154d5aebff`. This is a documentation-only evidence follow-up; no deployed SHA is claimed.
+
+Vercel team access for `drmeredith3-1399` now works, and exact-repository/name searches found no project. Creation of a linked project failed with: “You need to add a Login Connection to your GitHub account first.” No project or public deployment was created, and hosted-origin smoke checks remain unperformed.
 
 The Windows execution backend was unavailable and the registered Desktop Commander device was offline. Work used an isolated copy of GitHub base `20f7769b94a70e05853467991687df1c96a27594`; the owner's local checkout and working prompts were not changed or inspected. Use the release PR/CI commit as the authoritative candidate, not an assumed local SHA.
+
+## Verified candidate
+
+GitHub CI used Node 24.22.1 / npm 11.19.1 and passed clean installation, full and production audits (zero findings), formatting, type checking, lint, **60 unit/component tests**, **14 expected fixture outcomes**, production build/data validation, and **four Chromium tests**. [Machine-readable evidence](../reports/release/ci.json) distinguishes this exact candidate from later documentation commits. The initial candidate failed formatting because a transfer stripped final newlines; corrected bytes were committed and both push and PR workflows passed. No checks were disabled.
 
 ## Reproduce the gates
 
@@ -54,9 +60,17 @@ This uses a fresh anonymous browser context, no auth bypass token, and does not 
 
 The **Smoke deployed IncidentLens** GitHub workflow provides the same command for an actual HTTPS origin. Select the tested code branch/commit when dispatching; verify the run's head SHA and URL input. A successful local CI journey alone is not hosted-release evidence.
 
-## Owner-only hosting access
+## Required owner action: connect GitHub to Vercel
 
-The account owner must approve Vercel's short-lived consent link when team access is denied. Open the link supplied in the release conversation, sign into `drmeredith3-1399`, review the requested team permissions, and approve. The link expires after 10 minutes; request a fresh link if needed. Success is Vercel confirming access, followed by successful team-scoped project listing. Do not share credentials or API tokens in chat. This blocks publishing, but not code verification. Codex resumes project discovery, deployment, anonymous smoke checks, and the demo link update after consent.
+Vercel requires an interactive account login connection that Codex cannot approve for the owner. Team consent is already resolved; do not repeat it. This step blocks publishing.
+
+1. Sign into [Vercel](https://vercel.com/dashboard) as `drmeredith3-1399`, with access to GitHub account `RussypherIOIIOI`.
+2. Open your profile picture → **Settings** → **Authentication**.
+3. Add **GitHub**, sign in as `RussypherIOIIOI`, and approve Vercel's authorization. If repository permissions are requested, grant access to `RincidentlensR` only. If GitHub is already connected to a different Vercel account, stop and identify the intended account before transferring that connection.
+4. Return to Authentication and confirm the GitHub connection is listed. Tell Codex it is connected; no token, password, screenshot of credentials, API key, or billing upgrade is needed.
+5. Codex retries the linked-project creation, verifies the current candidate's CI, deploys the bundled app, runs anonymous hosted smoke, and updates the real demo link. The expected final result is a public HTTPS demo with generation disabled; connection alone does not establish a successful release.
+
+Current navigation reference: [Vercel account management](https://vercel.com/docs/accounts).
 
 ## Rollback and limitations
 
