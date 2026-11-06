@@ -43,4 +43,4 @@ For a keyboard demonstration, Tab to a **View source** link and press Enter. The
 
 ## Capture plan for a future portfolio page
 
-Useful images would show the JARVIS workspace, a selected source after citation activation, and a report’s missing-information section. Include descriptive alt text and keep the synthetic/bundled labels visible. No new UI screenshots or demo video were produced for this documentation update; do not present the earlier light-theme screenshot as the current JARVIS interface.
+Useful images would show the TMC-branded workspace, a selected source after citation activation, and a report’s missing-information section. Include descriptive alt text and keep the synthetic/bundled labels visible. No new UI screenshots or demo video were produced for this documentation update; do not present earlier screenshots as the current TMC interface.

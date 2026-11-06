@@ -1,43 +1,86 @@
-# JARVIS design system
+# TMC design system
 
-The interface follows the supplied JARVIS command-center reference: dark surfaces, thin panel borders, violet selection rails, and green readiness indicators. The requested Matrix Sans family replaces the typefaces pictured in that reference.
+IncidentLens uses the official brand system of **The Meredith Collective** (TMC). Tokens, fonts, marks, icons and patterns come from the TMC brand package and the TMC Design System (`tokens.json` v1, 2026-11-01). The site applies them; it does not define new brand values.
+
+Source: [globals.css](../src/app/globals.css) (tokens and components), [brand.tsx](../src/components/brand.tsx) (icons and mark), [site.tsx](../src/components/site.tsx) (header, hero, method band, footer).
+
+## Brand rules applied
+
+- Flat color only: no gradients, glows, gloss or drop shadows. Layers separate with 1px `line` rules and `surface-raised`.
+- Every border and rule is 1px (`border-hair`).
+- Dark (Void) is the default theme. The Method band switches to the Ivory canvas with `data-theme="light"`, alternating bands and opening on dark.
+- Uppercase appears only in the `label`, `button` and `signal` styles. Headings and body text use sentence case.
+- Matrix Sans is reserved for readouts: timestamps, record IDs, citation chips, ledger figures and hashes. It is never used for paragraphs.
+- Icons come only from the TMC outline set (24px grid, 1.5px stroke, `currentColor`). Each sits beside a text label and is hidden from assistive technology.
+- The compact mark is used under 48px (header, favicon, Apple touch icon); the horizontal lockup appears in the footer. Marks are never recolored or altered and carry ™, not ®.
+- Patterns (orbits, dot matrix) appear only behind areas without text, at 100% scale and with no added color.
+- Ledger readouts show only figures computed from the bundled data at build time ([ledger.ts](../src/lib/ledger.ts)). "Unresolved citations" counts references that do not resolve in their own bundle.
 
 ## Tokens
 
-Source: [globals.css](../src/app/globals.css).
+| Semantic token     | Dark value          | Light value          | Role                                |
+| ------------------ | ------------------- | -------------------- | ----------------------------------- |
+| `surface`          | Void `#08070D`      | Ivory `#FAF9F5`      | Page and band ground                |
+| `surface-raised`   | Void 2 `#13111C`    | Ivory 2 `#F1EEE5`    | Panes, panels, scenario cards       |
+| `surface-selected` | Void 3 `#221F2E`    | `#E6E2D7`            | Selected card, citation chip ground |
+| `line`             | Rule dark `#2E2A3D` | Rule light `#D9D5C8` | Every border and rule               |
+| `ink`              | Ivory `#FAF9F5`     | Slate `#141413`      | Primary text                        |
+| `ink-muted`        | Mist `#B9B4C7`      | Stone `#5C5A55`      | Secondary text and labels           |
+| `brand`            | Iris `#7F00FF`      | Iris `#7F00FF`       | Primary action fill, trace lines    |
+| `brand-text`       | `#C9A6FF`           | Iris `#7F00FF`       | Links, citations, emphasis text     |
+| `signal`           | Circuit `#76B900`   | Circuit `#76B900`    | Status dots and resolved readouts   |
+| `signal-text`      | Circuit `#76B900`   | Olive `#5F6B32`      | Status text                         |
+| `cta`              | Iris                | Slate                | Primary button fill                 |
+| `focus`            | Circuit             | Iris                 | 2px keyboard focus outline          |
 
-| Token        | Hex       | Role                              |
-| ------------ | --------- | --------------------------------- |
-| Void         | `#08070D` | Canvas and top-level chrome       |
-| Panel        | `#17112A` | Investigation/report surfaces     |
-| Raised       | `#211932` | Secondary surfaces                |
-| Iris         | `#7F00FF` | Selection borders and panel rails |
-| Soft Iris    | `#C8A6FF` | Readable links and active text    |
-| NVIDIA Green | `#76B900` | Readiness and next-check accents  |
-| Text         | `#F5F2FF` | Primary text                      |
-| Body         | `#D4CCE2` | Longer evidence/report text       |
-| Muted        | `#AAA0BA` | Supporting labels                 |
-| Line         | `#3A2F4B` | Structural separators             |
-| Amber        | `#FFC857` | Uncertainty/warnings              |
-| Danger       | `#FF5F79` | Error status                      |
+Evidence status maps onto the palette; the printed severity word always carries the meaning:
 
-Solid Iris is used primarily for structure; soft Iris supplies stronger contrast for small text. State labels and selection attributes supplement color.
+| Status    | Treatment                                       |
+| --------- | ----------------------------------------------- |
+| `error`   | `brand-text` label, Iris timeline node          |
+| `warning` | Manila `#E8DDBF` label and node                 |
+| `info`    | `ink-muted` label, outlined node                |
+| Log text  | Manila on Void, system monospace (literal data) |
 
-## Typography and layout
+This mapping is a site-level choice; the brand system defines no error or warning colors.
 
-Matrix Sans Regular is self-hosted as [WOFF2](../public/fonts/MatrixSans-Regular.woff2) with `font-display: swap`, a system fallback, and no synthesized font weights. Logs retain a monospace system stack for literal values. The original [SIL Open Font License](../public/fonts/OFL.txt) accompanies the asset; runtime never accesses OneDrive.
+## Typography
 
-Desktop uses a scenario rail and side-by-side evidence/report panes. Below 980px the scenario rail becomes a horizontal selector. Below 720px evidence and report stack vertically; report content is allowed to grow without the desktop scroll cap. Fine borders and small corner radii preserve the reference’s panel treatment.
+| Role    | Family                | Use                                              |
+| ------- | --------------------- | ------------------------------------------------ |
+| Display | Poppins 500/600       | Hero line, titles, pane and panel headings       |
+| Body    | Lora 400/600          | Report statements, evidence text, descriptions   |
+| Label   | Space Grotesk 400/500 | Eyebrows, chips, buttons, navigation (uppercase) |
+| Signal  | Matrix Sans 400       | Timestamps, IDs, citation chips, ledger figures  |
+
+All fonts are self-hosted WOFF2 files in [public/fonts](../public/fonts) with their SIL Open Font License texts. They keep their real family names so the brand token stacks apply unchanged, and the four above-the-fold faces are preloaded. No font CDN is used.
+
+## Layout
+
+The page runs header → hero (with the trace preview and ledger) → dot-matrix strip → workspace → Ivory method band → footer. The workspace shows three scenario cards, the investigation heading with a per-incident ledger, and side-by-side evidence and report panes that scroll independently, so a citation can reveal its source without moving the report. Below 900px the panes stack and the report grows with the page. Below 720px scenario cards stack and the header navigation hides; its links remain in the hero and footer.
+
+## Motion
+
+Motion explains structure and never hides content from assistive technology or contrast checks:
+
+- The hero text rises in with a clip reveal; the trace preview draws its connector lines, then rings each citation chip once.
+- Switching scenarios resets both panes to the top, settles them into place and sweeps a 1px Iris line across them.
+- A selected source flashes an Iris outline once.
+- Method panels reveal on scroll where `animation-timeline: view()` is supported.
+
+Animations change only `transform`, `clip-path` and outline color, never text opacity. None loops or runs longer than about two seconds. `prefers-reduced-motion: reduce` disables every animation, transition and smooth scroll.
 
 ## Interaction requirements
 
 - Citations remain keyboard-operable links with source-specific accessible names.
-- Activation moves focus to the selected source and adds a visible selection border/background.
-- The report has a skip link; a polite status region announces selection/generation.
-- Busy and disabled states prevent duplicate generation. Errors retain readable report content.
-- `prefers-reduced-motion` disables transitions and smooth scrolling.
+- Activation moves focus to the selected source, scrolls it into view and marks it with a `brand-text` border and selected surface.
+- A skip link jumps to the investigation; a polite status region announces selection and generation.
+- Busy and disabled states prevent duplicate generation. When live generation is unavailable the button shows a lock icon and neutral styling. Errors keep the existing report readable.
+- Section headings carry decorative icons hidden from assistive technology, so their accessible names are plain text.
 - Model and evidence text render as text rather than raw HTML.
 
-Selected foreground/background calculations recorded in [theme-verification.json](../reports/theme-verification.json) range from 6.0:1 to 16.54:1 and exceed 4.5:1. They cover eight token pairs, not every possible rendered state or complete accessibility compliance. The initial browser accessibility checks preceded this theme; see [verification](verification.md) before making broader claims.
+## Contrast
 
-When changing tokens, check the actual foreground/background combination, focus visibility, disabled controls, long source text, narrow viewports, and font loading. Do not hide missing-information or provenance labels to make the interface appear simpler.
+Measured flat-color pairs (WCAG 2.2, 2026-11-06) include `brand-text` on Void 3 7.96:1, Mist on Void 2 9.26:1, Manila on Void 14.84:1, Circuit on Void 2 7.74:1, Ivory on Iris 5.96:1, Stone on Ivory 2 5.94:1 and Iris icons on Ivory 2 5.41:1 (non-text). Iris on Void 2 measured 2.98:1, so state borders on raised surfaces use `brand-text` instead. These calculations do not cover every rendered state or establish full accessibility compliance; see [verification](verification.md).
+
+When changing tokens, check the actual foreground/background pair, focus visibility, disabled controls, long source text, narrow viewports, reduced motion and font loading. Do not hide missing-information or provenance labels to make the interface appear simpler.

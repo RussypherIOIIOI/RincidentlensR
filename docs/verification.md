@@ -38,6 +38,10 @@ All four existing browser tests passed against the anonymous HTTPS production or
 
 See [hosted evidence](../reports/release/hosted.json) and [the release guide](release.md). This evidence is a documentation-only follow-up to the deployed code; it does not retroactively claim that the evidence commit was deployed or tested.
 
+## TMC brand redesign: 2026-11-06 (local, not deployed)
+
+Local checks on Windows with Node 25.9.0 (the project pins Node 24.x for CI and Vercel): type checking, lint, 62 unit/component tests (60 existing plus 2 ledger tests), 14 expected evaluation outcomes, production build, formatting, and the four unchanged Chromium tests including their axe checks. A separate local axe scan with WCAG 2.2 AA and best-practice rules reported no violations on desktop 1440×900, mobile 390×844 and the 404 page; contrast items it could not decide automatically were checked as flat color pairs (see the [design system](design-system.md#contrast)). The coding assistant inspected the rendered desktop and mobile layouts. This stage is not yet in remote CI or deployed, and no human UX review is claimed.
+
 ## Remaining work before stronger claims
 
 - Verify each new release candidate in CI and visually inspect the actual public desktop/mobile deployment where browser access is permitted.

@@ -41,4 +41,4 @@ For UI changes, verify keyboard citation focus, visible selected states, reduced
 
 Keep Mermaid source files synchronized with their embedded copies and validate local links after moving files. Update [CHANGELOG.md](CHANGELOG.md) for material changes. Never add invented usage statistics, unexecuted CI badges, human review, or live-model scores.
 
-The owner’s repository includes the [GNU General Public License v3.0](LICENSE). Preserve that license when maintaining this checkout. Matrix Sans retains its own included license; see [third-party notices](THIRD_PARTY_NOTICES.md).
+The owner’s repository includes the [GNU General Public License v3.0](LICENSE). Preserve that license when maintaining this checkout. The bundled fonts retain their own included licenses, and the TMC brand assets (`public/brand/`, `src/app/icon.svg`, `src/app/apple-icon.png`) are not covered by the source license; see [third-party notices](THIRD_PARTY_NOTICES.md).
