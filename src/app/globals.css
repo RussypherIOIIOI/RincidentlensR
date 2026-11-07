@@ -175,6 +175,7 @@ body {
 h1,
 h2,
 h3,
+h4,
 p,
 dl,
 dd,
@@ -199,6 +200,13 @@ svg {
 :focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
+}
+/* Skip-link and in-page targets take focus so the next Tab continues there.
+   They are landmarks, not controls, so they draw no focus ring. */
+#workspace:focus,
+#method:focus,
+#main:focus {
+  outline: none;
 }
 ::selection {
   background: var(--tmc-iris);
@@ -859,7 +867,9 @@ svg {
   color: var(--brand-text);
   font-size: 14px;
 }
-h1 {
+h1,
+.investigation-heading h2,
+.empty-state h2 {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.4375rem);
   font-weight: 600;
@@ -904,7 +914,7 @@ h1 {
   padding: 20px var(--space-4);
   border-bottom: var(--border-hair) solid var(--line);
 }
-.pane-heading h2 {
+.pane-heading h3 {
   margin-top: 4px;
   font-family: var(--font-display);
   font-size: 20px;
@@ -1149,7 +1159,7 @@ h1 {
   padding-top: 20px;
   border-top: var(--border-hair) solid var(--line);
 }
-.reference-group h3 {
+.reference-group h4 {
   font-family: var(--font-label);
   font-size: 12px;
   font-weight: 500;
@@ -1241,7 +1251,7 @@ h1 {
   gap: 12px;
   margin-bottom: 14px;
 }
-.section-head h3 {
+.section-head h4 {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1869,6 +1879,13 @@ h1 {
   }
   .ledger > div:last-child:nth-child(odd) {
     grid-column: 1 / -1;
+  }
+}
+@media (max-width: 374px) {
+  /* Mark, name, gap, chip and gutters need about 356px. The hero eyebrow already says
+     "Synthetic incident lab", so narrower screens drop the chip instead of overflowing. */
+  .status-chip {
+    display: none;
   }
 }
 @media (max-width: 560px) {

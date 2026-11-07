@@ -57,7 +57,7 @@ All fonts are self-hosted WOFF2 files in [public/fonts](../public/fonts) with th
 
 ## Layout
 
-The page runs header → hero (with the trace preview and ledger) → dot-matrix strip → workspace → Ivory method band → footer. The workspace shows three scenario cards, the investigation heading with a per-incident ledger, and side-by-side evidence and report panes that scroll independently, so a citation can reveal its source without moving the report. Below 900px the panes stack and the report grows with the page. Below 720px scenario cards stack and the header navigation hides; its links remain in the hero and footer.
+The page runs header → hero (with the trace preview and ledger) → dot-matrix strip → workspace → Ivory method band → footer. The workspace shows three scenario cards, the investigation heading with a per-incident ledger, and side-by-side evidence and report panes that scroll independently, so a citation can reveal its source without moving the report. Below 900px the panes stack and the report grows with the page. Below 720px scenario cards stack and the header navigation hides; its links remain in the hero and footer. Below 375px the header status chip also hides, so the mark and name fit a 320px screen.
 
 ## Motion
 
@@ -74,7 +74,9 @@ Animations change only `transform`, `clip-path` and outline color, never text op
 
 - Citations remain keyboard-operable links with source-specific accessible names.
 - Activation moves focus to the selected source, scrolls it into view and marks it with a `brand-text` border and selected surface.
-- A skip link jumps to the investigation; a polite status region announces selection and generation.
+- The hero line is the page's only `h1`. The selected incident title is an `h2`, the two panes are `h3` and report sections are `h4`, so heading navigation follows the page order.
+- Skip links on the home and 404 pages move focus to the investigation or the page content, so the next Tab continues there. These targets take focus without drawing a ring because they are not controls. A polite status region announces selection and generation.
+- The hero trace preview is real text: assistive technology reads the statement and each cited record. Only the citation chips, which repeat the record IDs, are hidden.
 - Busy and disabled states prevent duplicate generation. When live generation is unavailable the button shows a lock icon and neutral styling. Errors keep the existing report readable.
 - Section headings carry decorative icons hidden from assistive technology, so their accessible names are plain text.
 - Model and evidence text render as text rather than raw HTML.

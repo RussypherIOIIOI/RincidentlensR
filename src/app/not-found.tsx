@@ -8,8 +8,11 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       <SiteHeader />
-      <main id="main" className="band not-found">
+      <main id="main" className="band not-found" tabIndex={-1}>
         <div className="band-inner">
           <p className="eyebrow">Error 404 · No matching record</p>
           <h1>This page has no source record.</h1>

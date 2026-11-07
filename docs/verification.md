@@ -42,6 +42,18 @@ See [hosted evidence](../reports/release/hosted.json) and [the release guide](re
 
 Local checks on Windows with Node 25.9.0 (the project pins Node 24.x for CI and Vercel): type checking, lint, 62 unit/component tests (60 existing plus 2 ledger tests), 14 expected evaluation outcomes, production build, formatting, and the four unchanged Chromium tests including their axe checks. A separate local axe scan with WCAG 2.2 AA and best-practice rules reported no violations on desktop 1440×900, mobile 390×844 and the 404 page; contrast items it could not decide automatically were checked as flat color pairs (see the [design system](design-system.md#contrast)). The coding assistant inspected the rendered desktop and mobile layouts. This stage is not yet in remote CI or deployed, and no human UX review is claimed.
 
+Review follow-up on PR #2: automated review comments led to these changes.
+
+- The hero line is now the page's only `h1`, and the workspace headings nest under it.
+- Skip-link and in-page targets now take focus, and the 404 page has its own skip link.
+- The footer gains a Method link, which the mobile header otherwise hides.
+- The hero trace preview is now readable by assistive technology.
+- The header status chip hides below 375px, so the header fits a 320px screen.
+
+The two Chromium heading assertions now expect the incident title as an `h2` and the hero line as the `h1`. The cross-bundle ledger test now supplies both bundles.
+
+After these changes, the local checks above passed again: 62 tests, 14 cases, the build and the four Chromium tests. The separate axe scan again reported no violations. A scripted browser check confirmed that each skip link moves focus to its target and that nothing scrolls sideways from 320px to 720px.
+
 ## Remaining work before stronger claims
 
 - Verify each new release candidate in CI and visually inspect the actual public desktop/mobile deployment where browser access is permitted.

@@ -35,8 +35,10 @@ describe('ledger figures', () => {
         },
       },
     };
-    const before = ledgerFigures([first]);
-    const after = ledgerFigures([tampered]);
+    // Both bundles are supplied, so the ID borrowed from `second` is known to the page but
+    // must still count as unresolved for `first`.
+    const before = ledgerFigures([first, second]);
+    const after = ledgerFigures([tampered, second]);
     expect(after.unresolved).toBe(2);
     expect(after.citations).toBe(
       before.citations - first.artifact.report.summary[0].evidenceIds.length + 2,

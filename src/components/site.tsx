@@ -33,6 +33,7 @@ export function SiteHeader() {
 }
 
 export interface TracePreview {
+  incident: string;
   statement: string;
   sources: { id: string; label: string; kind: string; source: string; time: string }[];
 }
@@ -52,24 +53,20 @@ export function tracePreview(scenario: ScenarioView | undefined): TracePreview |
       source: item.source,
       time: clock(item.timestamp),
     }));
-  return { statement: fact.text, sources };
+  return { incident: scenario.title, statement: fact.text, sources };
 }
 
+/**
+ * The preview stays readable by assistive technology: the statement and each cited record
+ * are real text. Only the citation chips, which repeat the record IDs below, are hidden.
+ */
 function TraceFigure({ trace }: { trace: TracePreview }) {
   return (
-    <figure
-      className="trace"
-      role="img"
-      aria-label={
-        'Preview of a report statement citing ' +
-        trace.sources.length +
-        ' source records from the failed-deployment incident'
-      }
-    >
+    <figure className="trace" aria-label={'Preview from the report on “' + trace.incident + '”'}>
       <div className="trace-statement">
         <span className="trace-eyebrow">Report · What the evidence says</span>
         <p>{trace.statement}</p>
-        <span className="trace-chips">
+        <span className="trace-chips" aria-hidden="true">
           {trace.sources.map((item, index) => (
             <span key={item.id} className="trace-chip" style={{ '--i': index } as CSSProperties}>
               {item.label}
@@ -77,12 +74,12 @@ function TraceFigure({ trace }: { trace: TracePreview }) {
           ))}
         </span>
       </div>
-      <ol className="trace-sources">
+      <ol className="trace-sources" aria-label="Cited source records">
         {trace.sources.map((item, index) => (
           <li key={item.id} style={{ '--i': index } as CSSProperties}>
-            <span className="trace-time">{item.time}</span>
-            <span className="trace-kind">{item.kind}</span>
-            <span className="trace-source">{item.source}</span>
+            <span className="trace-time">{item.time}</span>{' '}
+            <span className="trace-kind">{item.kind}</span>{' '}
+            <span className="trace-source">{item.source}</span>{' '}
             <span className="trace-id">{item.id}</span>
           </li>
         ))}
@@ -114,12 +111,12 @@ export function Hero({ figures, trace }: { figures: LedgerFigures; trace: TraceP
       <div className="band-inner hero-grid">
         <div className="hero-copy">
           <p className="eyebrow">Portfolio project · Synthetic incident lab</p>
-          <p className="display">
+          <h1 className="display">
             Trace every claim back to <span className="display-accent">its evidence.</span>
             <span className="display-cite" aria-hidden="true">
               01
             </span>
-          </p>
+          </h1>
           <p className="hero-lead">
             IncidentLens turns small incident bundles into reports you can check line by line. Every
             statement links to the record behind it, and facts, possible causes and open questions
@@ -205,6 +202,7 @@ export function MethodBand() {
       className="band band-light"
       data-theme="light"
       id="method"
+      tabIndex={-1}
       aria-labelledby="method-heading"
     >
       <div className="band-inner method-grid">
@@ -276,6 +274,7 @@ export function SiteFooter() {
           <a href={REPOSITORY_URL}>Source code</a>
           <a href={docs('portfolio-case-study.md')}>Case study</a>
           <a href={docs('README.md')}>Documentation</a>
+          <a href="/#method">Method</a>
           <a href="/#workspace">Back to the investigation</a>
         </nav>
         <p className="fine-print">

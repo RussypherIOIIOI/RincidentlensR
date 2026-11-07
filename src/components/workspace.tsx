@@ -88,12 +88,12 @@ function SectionHeading({
 }) {
   return (
     <div className="section-head">
-      <h3>
+      <h4>
         <span className="section-icon">
           <Icon name={icon} size={16} />
         </span>
         {children}
-      </h3>
+      </h4>
       {aside}
     </div>
   );
@@ -117,7 +117,7 @@ function ReportContent({
   return (
     <>
       <section className="summary-section">
-        <h3 className="eyebrow eyebrow-brand">What the evidence says</h3>
+        <h4 className="eyebrow eyebrow-brand">What the evidence says</h4>
         {facts(report.summary)}
       </section>
       <section className="report-section">
@@ -346,9 +346,9 @@ export function Workspace({
 
   if (!scenario || !artifact)
     return (
-      <section className="band workspace-band empty-state" id="workspace">
+      <section className="band workspace-band empty-state" id="workspace" tabIndex={-1}>
         <div className="band-inner">
-          <h1>No scenarios available</h1>
+          <h2>No scenarios available</h2>
           <p>No evidence bundles could be loaded.</p>
         </div>
       </section>
@@ -368,7 +368,12 @@ export function Workspace({
   );
 
   return (
-    <section className="band workspace-band" id="workspace" aria-labelledby="scenario-title">
+    <section
+      className="band workspace-band"
+      id="workspace"
+      tabIndex={-1}
+      aria-labelledby="scenario-title"
+    >
       <div className="band-inner">
         <div className="scenario-picker">
           <div className="picker-head">
@@ -406,7 +411,7 @@ export function Workspace({
               Investigation <span aria-hidden="true">/</span>{' '}
               <span className="signal-inline">{scenario.id}</span>
             </p>
-            <h1 id="scenario-title">{scenario.title}</h1>
+            <h2 id="scenario-title">{scenario.title}</h2>
             <p className="investigation-lead">{scenario.description}</p>
           </div>
           <dl className="ledger ledger-compact">
@@ -434,7 +439,7 @@ export function Workspace({
             <div className="pane-heading">
               <div>
                 <p className="eyebrow">Source records</p>
-                <h2 id="evidence-heading">Evidence timeline</h2>
+                <h3 id="evidence-heading">Evidence timeline</h3>
               </div>
               <p className="pane-meta">
                 <span>{events.length} timed events · UTC</span>
@@ -457,13 +462,13 @@ export function Workspace({
               </ol>
               {untimed.length > 0 && (
                 <div className="reference-group">
-                  <h3>Without an event time</h3>
+                  <h4>Without an event time</h4>
                   <p className="muted">These records cannot be placed reliably on the timeline.</p>
                   {untimed.map(card)}
                 </div>
               )}
               <div className="reference-group runbook-group">
-                <h3>Runbook reference</h3>
+                <h4>Runbook reference</h4>
                 <p className="muted">Recommended procedure, not a record of actions taken.</p>
                 {runbooks.map(card)}
               </div>
@@ -483,7 +488,7 @@ export function Workspace({
             <div className="pane-heading">
               <div>
                 <p className="eyebrow">Analysis with a source trail</p>
-                <h2 id="report-heading">Investigation report</h2>
+                <h3 id="report-heading">Investigation report</h3>
               </div>
               <button
                 className={'btn btn-sm generate-button' + (liveEnabled ? ' btn-primary' : '')}
