@@ -18,9 +18,9 @@ afterEach(() => {
 describe('investigation workspace', () => {
   it('opens a saved report and switches immediately between all three scenarios', async () => {
     render(<Workspace scenarios={scenarios} liveEnabled={false} />);
-    expect(screen.getByRole('heading', { level: 1, name: scenarios[0].title })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: scenarios[0].title })).toBeInTheDocument();
     await userEvent.click(screen.getByRole('button', { name: /Database outage/ }));
-    expect(screen.getByRole('heading', { level: 1, name: scenarios[1].title })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: scenarios[1].title })).toBeInTheDocument();
     expect(screen.getByText(scenarios[1].artifact.report.summary[0].text)).toBeInTheDocument();
     await userEvent.click(screen.getByRole('button', { name: /Expired credential/ }));
     expect(

@@ -65,3 +65,11 @@ These short records explain the implemented tradeoffs as of 2026-10-15. They des
 **Reason:** the workspace should match the project owner’s portfolio identity and work without external font requests.
 
 **Consequence:** the font license must ship with the asset. Color-pair calculations support contrast choices, while full post-theme browser/accessibility verification remains a separate outstanding check.
+
+## 9. TMC brand system replaces the JARVIS styling
+
+**Decision:** apply the official TMC brand system: Design System `tokens.json` v1 semantic tokens, the Poppins/Lora/Space Grotesk/Matrix Sans stack, the TMC outline icons, compact mark, lockup and patterns. This supersedes decision 8's palette naming and single-font typography.
+
+**Reason:** the public portfolio should carry the owner's company identity. The brand reserves "JARVIS" for internal use and replaces the third-party green name with "Circuit", so neither appears in the interface. Matrix Sans is a readout face; running text needs Lora and Poppins to keep hierarchy readable.
+
+**Consequence:** fonts stay self-hosted with their real family names, so the existing font-loading browser check still applies. Error and warning severities map onto brand colors (Iris, Manila) because the brand defines no feedback colors; the printed severity word remains the primary signal. Brand assets ship in `public/brand/` outside the source license.

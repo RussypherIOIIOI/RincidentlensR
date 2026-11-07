@@ -14,7 +14,7 @@ IncidentLens addresses that review problem through three deliberately small scen
 
 A visitor selects a deployment failure, database outage, or authentication incident. The workspace separates timed events from untimed material and runbooks. The report separates factual observations, possible causes, missing information, and proposed next checks. Selecting a citation reveals and focuses the source.
 
-Saved examples make the demo dependable. Optional live generation shares the report contract, while a local-only server gate, bounded attempts, and safe errors control its failure behavior. The JARVIS visual system uses Void, Iris, NVIDIA Green, and self-hosted Matrix Sans.
+Saved examples make the demo dependable. Optional live generation shares the report contract, while a local-only server gate, bounded attempts, and safe errors control its failure behavior. The interface uses The Meredith Collective™ brand system: Void, Iris and Circuit on dark bands, an Ivory editorial band, and self-hosted Poppins, Lora, Space Grotesk and Matrix Sans.
 
 ## Engineering decisions worth discussing
 

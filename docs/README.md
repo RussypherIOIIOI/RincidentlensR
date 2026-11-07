@@ -12,7 +12,7 @@ Choose the path that matches your review.
 | Interpret evaluation results                    | [Testing and evaluation](testing-and-evaluation.md) |
 | Run, configure, troubleshoot, or deploy         | [Operations](operations.md)                         |
 | Understand design tradeoffs                     | [Architecture decisions](decisions.md)              |
-| Maintain the JARVIS interface                   | [Design system](design-system.md)                   |
+| Maintain the TMC interface                      | [Design system](design-system.md)                   |
 | Distinguish tested behavior from remaining work | [Verification record](verification.md)              |
 | Change source or fixtures safely                | [Contribution guide](../CONTRIBUTING.md)            |
 | Review the trust and deployment model           | [Security](../SECURITY.md)                          |

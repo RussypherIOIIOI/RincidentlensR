@@ -2,6 +2,16 @@
 
 This records delivered project changes. Source publication is separate from an application deployment or tagged release.
 
+## 2026-11-06
+
+### TMC brand redesign
+
+- Rebuilt the interface on The Meredith Collective™ brand system: official tokens, self-hosted Poppins, Lora, Space Grotesk and Matrix Sans, TMC outline icons, compact mark favicon and footer lockup.
+- Added a hero with a trace preview and a ledger of figures counted from the bundled reports, a method band on the Ivory canvas, a branded footer and a branded 404 page.
+- Moved scenario selection into cards above the workspace, added a per-incident ledger, and reset both panes to the top when switching incidents.
+- Removed the public "JARVIS" label, gradients and drop shadows; replaced decorative heading glyphs with hidden icons so heading names are plain text; raised source-ID buttons to a 24px target.
+- Added ledger unit tests. Report contracts, API behavior and the browser test suite are unchanged.
+
 ## 2026-11-04
 
 ### Public portfolio release

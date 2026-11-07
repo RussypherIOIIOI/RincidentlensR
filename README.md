@@ -60,7 +60,7 @@ Open [http://127.0.0.1:3100](http://127.0.0.1:3100). Both scripts bind to loopba
 
 Each scenario includes logs, deployment/change events, and an untimed runbook. The three saved reports are visibly labeled **AI-authored examples**. They were created by an AI coding assistant; they are not captured live-provider outputs or human-reviewed reports. Their model and generation-time fields are null.
 
-The JARVIS interface uses **Void #08070D**, **Iris #7F00FF**, **NVIDIA Green #76B900**, and locally bundled **Matrix Sans**.
+The interface uses the official brand system of **The Meredith Collective™** (TMC): **Void #08070D**, **Iris #7F00FF**, **Circuit #76B900** and the Ivory editorial canvas, with locally bundled **Poppins**, **Lora**, **Space Grotesk** and **Matrix Sans**. See the [design system](docs/design-system.md).
 
 ## Engineering highlights
 
@@ -99,4 +99,4 @@ Live ingestion, arbitrary uploads, autonomous remediation, vector search, accoun
 
 ## License
 
-This repository includes the [GNU General Public License v3.0](LICENSE), retained from the owner’s repository initialization. Matrix Sans remains covered by its included SIL Open Font License; see [third-party notices](THIRD_PARTY_NOTICES.md).
+This repository includes the [GNU General Public License v3.0](LICENSE), retained from the owner’s repository initialization. The bundled fonts remain covered by their included SIL Open Font Licenses, and the TMC brand assets are not licensed as part of the source; see [third-party notices](THIRD_PARTY_NOTICES.md).

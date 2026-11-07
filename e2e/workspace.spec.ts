@@ -26,10 +26,13 @@ test('credential-free recruiter journey across all scenarios and source referenc
   const response = await page.goto('/');
   expect(response?.status()).toBe(200);
   expect(new URL(page.url()).origin).toBe(origin);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName(
+    'Trace every claim back to its evidence.',
+  );
   await expect(page.getByRole('button', { name: 'Generate live report' })).toBeDisabled();
   for (const [category, title] of scenarios) {
     await page.getByRole('button', { name: new RegExp(category) }).click();
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText(title);
+    await expect(page.getByRole('heading', { level: 2, name: title, exact: true })).toBeVisible();
     const citations = page.getByRole('link', { name: /View source / });
     expect(await citations.count()).toBeGreaterThan(0);
     for (let i = 0; i < (await citations.count()); i++) {
@@ -100,7 +103,7 @@ test('all mobile scenarios fit the viewport and citations move focus with reduce
   );
   for (const [category, title] of scenarios) {
     await page.getByRole('button', { name: new RegExp(category) }).click();
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText(title);
+    await expect(page.getByRole('heading', { level: 2, name: title, exact: true })).toBeVisible();
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
     ).toBe(true);
